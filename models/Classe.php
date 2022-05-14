@@ -23,9 +23,8 @@ public function professeurs():array|null{
 }
 
 public static function findAll():array{
-    $sql="select * from '".self::table()."'";
-    echo $sql;
-  return [];
+    $sql="select * from '".parent::table()."'";
+   return parent::findBy($sql);
 }
 
 public static function delete(int $id):int{

@@ -1,82 +1,59 @@
-<?php 
+<?php
 
 namespace App\Model;
 
-class Etudiant extends User{
- private string $matricule;
- private string $sexe;
- private string $adresse;
- public function __construct()
- {
-    self::$role="ROLE_ETUDIANT";
- } 
- 
- 
+class Etudiant extends User
+{
+  private string $matricule;
+  private string $adresse;
+  public function __construct()
+  {
+    self::$role = "ROLE_ETUDIANT";
+  }
+  /**
+   * Get the value of matricule
+   */
+  public function getMatricule()
+  {
+    return $this->matricule;
+  }
 
- /**
-  * Get the value of matricule
-  */ 
- public function getMatricule()
- {
-  return $this->matricule;
- }
+  /**
+   * Set the value of matricule
+   *
+   * @return  self
+   */
+  public function setMatricule($matricule)
+  {
+    $this->matricule = $matricule;
 
- /**
-  * Set the value of matricule
-  *
-  * @return  self
-  */ 
- public function setMatricule($matricule)
- {
-  $this->matricule = $matricule;
+    return $this;
+  }
 
-  return $this;
- }
 
- /**
-  * Get the value of sexe
-  */ 
- public function getSexe()
- {
-  return $this->sexe;
- }
 
- /**
-  * Set the value of sexe
-  *
-  * @return  self
-  */ 
- public function setSexe($sexe)
- {
-  $this->sexe = $sexe;
+  /**
+   * Get the value of adresse
+   */
+  public function getAdresse()
+  {
+    return $this->adresse;
+  }
 
-  return $this;
- }
+  public function setAdresse($adresse)
+  {
+    $this->adresse = $adresse;
 
- /**
-  * Get the value of adresse
-  */ 
- public function getAdresse()
- {
-  return $this->adresse;
- }
+    return $this;
+  }
 
- /**
-  * Set the value of adresse
-  *
-  * @return  self
-  */ 
- public function setAdresse($adresse)
- {
-  $this->adresse = $adresse;
-
-  return $this;
- }
-
- public static function findAll():array{
-   $sql="select * from ".parent::table()." where role  like 'ROLE_ETUDIANT' ";
-   echo $sql;  
-   return [];
- }
-
+  public static function getRole()
+  {
+    return parent::$role = 'ROLE_ETUDIANT';
+  }
+  public static function findAll(): array
+  {
+    $sql = "select * from " . parent::table() . " where role  like ?";
+    return parent::findBy($sql, [self::getRole()]);
+  }
 }

@@ -1,10 +1,6 @@
 <?php
 
 namespace App\Model;
-
-use LDAP\Result;
-use User;
-
 class Professeur extends Personne
 {
 
@@ -14,19 +10,13 @@ class Professeur extends Personne
     {
         parent::$role = "ROLE_RP";
     }
-  /**
-   * Get the value of grade
-   */
+  
   public function getGrade()
   {
     return $this->grade;
   }
 
-  /**
-   * Set the value of grade
-   *
-   * @return  self
-   */
+  
   public function setGrade($grade)
   {
     $this->grade = $grade;
@@ -38,10 +28,6 @@ class Professeur extends Personne
   public function classes(): array
   {
     return [];
-  }
-  public static function table()
-  {
-    return self::$table = 'personne';
   }
   public static function getRole()
   {
@@ -68,8 +54,8 @@ class Professeur extends Personne
   {
     $db = self::database();
     $db->connexionBD();
-    $sql = "INSERT INTO `personne` (`nom_complet`, `role`,`grade`) VALUES (?,?,?);";
-    $result =  $db->executeUpdate($sql, [$this->nomComplet, parent::$role, $this->grade]);
+    $sql = "INSERT INTO `personne` (`nom_complet`, `role`,`grade`,`sexe`) VALUES (?,?,?,?);";
+    $result =  $db->executeUpdate($sql, [$this->nomComplet, parent::$role, $this->grade,$this->sexe]);
     $db->closeConnexion();
     echo $sql;
     return $result;

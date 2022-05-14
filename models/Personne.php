@@ -10,9 +10,10 @@ abstract class Personne extends Model
     //Attributs Intances =>  
     protected int $id;
     protected string $nomComplet;
-    protected static string $role;
+    protected string $sexe;
+
     //Attributs classes ou static 
-    private static int $nbrePersonne;
+    protected static string $role;
     //Methodes Abstraites
 
     //Constructeur Par defaut
@@ -37,10 +38,6 @@ abstract class Personne extends Model
         return $this->nomComplet;
     }
     //:: Operateur de portee de classe
-    public static function getNbrePersonne(): int
-    {
-        return self::$nbrePersonne;
-    }
     //Setters
     public function setId(int $id): self
     {
@@ -52,8 +49,16 @@ abstract class Personne extends Model
         $this->nomComplet = $nomComplet;
         return $this;
     }
-    public  static function setNbrePersonne(int $nbrePersonne): void
+
+    public function getSexe()
     {
-        self::$nbrePersonne = $nbrePersonne;
+        return $this->sexe;
+    }
+    
+    public function setSexe($sexe)
+    {
+        $this->sexe = $sexe;
+
+        return $this;
     }
 }

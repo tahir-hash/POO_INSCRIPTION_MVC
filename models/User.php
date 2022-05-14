@@ -1,15 +1,17 @@
 <?php
+
 namespace App\Model;
 
 
- abstract class User extends Personne{
-   
+abstract class User extends Personne
+{
+
     protected string $login;
     protected string $password;
 
     /**
      * Get the value of login
-     */ 
+     */
     public function getLogin()
     {
         return $this->login;
@@ -19,7 +21,7 @@ namespace App\Model;
      * Set the value of login
      *
      * @return  self
-     */ 
+     */
     public function setLogin($login)
     {
         $this->login = $login;
@@ -29,7 +31,7 @@ namespace App\Model;
 
     /**
      * Get the value of password
-     */ 
+     */
     public function getPassword()
     {
         return $this->password;
@@ -39,15 +41,15 @@ namespace App\Model;
      * Set the value of password
      *
      * @return  self
-     */ 
+     */
     public function setPassword($password)
     {
         $this->password = $password;
 
         return $this;
     }
-    public static function findUserByLoginAndPassword(string $login,string $password):object|null{
-        return parent::findBy("select * from personne where login=? and password=? ",[$login,$password],true);
+    public static function findUserByLoginAndPassword(string $login, string $password): object|null
+    {
+        return parent::findBy("select * from personne where login=? and password=? ", [$login, $password], true);
     }
-
 }
