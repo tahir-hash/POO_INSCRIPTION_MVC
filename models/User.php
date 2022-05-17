@@ -8,7 +8,6 @@ abstract class User extends Personne
 
     protected string $login;
     protected string $password;
-
     /**
      * Get the value of login
      */

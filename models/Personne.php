@@ -54,11 +54,16 @@ abstract class Personne extends Model
     {
         return $this->sexe;
     }
-    
+
     public function setSexe($sexe)
     {
         $this->sexe = $sexe;
 
         return $this;
+    }
+    public static function findAll(): array
+    {
+        $sql = "select * from " . self::table() . " where role  like ?";
+        return parent::findBy($sql, [self::getRole()]);
     }
 }

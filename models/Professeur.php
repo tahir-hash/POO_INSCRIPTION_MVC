@@ -1,22 +1,23 @@
 <?php
 
 namespace App\Model;
+
 class Professeur extends Personne
 {
 
   private string $grade;
 
   public function __construct()
-    {
-        parent::$role = "ROLE_RP";
-    }
-  
+  {
+    parent::$role = "ROLE_RP";
+  }
+
   public function getGrade()
   {
     return $this->grade;
   }
 
-  
+
   public function setGrade($grade)
   {
     $this->grade = $grade;
@@ -55,9 +56,19 @@ class Professeur extends Personne
     $db = self::database();
     $db->connexionBD();
     $sql = "INSERT INTO `personne` (`nom_complet`, `role`,`grade`,`sexe`) VALUES (?,?,?,?);";
-    $result =  $db->executeUpdate($sql, [$this->nomComplet, parent::$role, $this->grade,$this->sexe]);
+    $result =  $db->executeUpdate($sql, [$this->nomComplet, parent::$role, $this->grade, $this->sexe]);
     $db->closeConnexion();
     echo $sql;
     return $result;
+  }
+
+
+  public function rp(): RP
+  {
+    $sql = "select p.* from " . parent::table() . " m,personne p
+    where  p.id=m.rp_id
+    and p.role='ROLE_RP'
+    and m.id=?";
+    return parent::findBy($sql, [$this->id], true);
   }
 }

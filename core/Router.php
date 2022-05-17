@@ -8,10 +8,12 @@ class Router
 {
 
     private Request $request;
+    private Controller $control;
 
     public function __construct()
     {
         $this->request = new Request;
+        $this->control = new Controller($this->request);
     }
 
     private array $routes = [];
@@ -36,7 +38,8 @@ class Router
                 throw new RouteNotFoundException();
             }
         } else {
-            throw new RouteNotFoundException();
+            //throw new RouteNotFoundException();
+            $this->control->redirectToRoute('login');
         }
     }
 }

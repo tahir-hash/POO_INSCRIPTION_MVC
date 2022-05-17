@@ -2,12 +2,21 @@
 
 namespace App\Core;
 use App\Core\Request;
+use Digia\InstanceFactory\InstanceFactory;
+
 class Controller{
 
     protected Request $request;
+    protected Session $session;
     public function __construct(Request $request){
 
         $this->request = $request;
+        $this->session=new Session;
+    }
+    
+    public function instance(string $classe, array $data)
+    {
+        return $instanced= InstanceFactory::fromProperties($classe,$data);
     }
 
     public function render(string $path, array $data=[] ){
@@ -22,5 +31,6 @@ class Controller{
 
     public function redirectToRoute($uri){
         header("location:".Constantes::WEB_ROOT.$uri);
+        exit();
     }
 }

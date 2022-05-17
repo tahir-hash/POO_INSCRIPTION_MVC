@@ -37,7 +37,7 @@ abstract class Model implements IModel
     echo $sql;
     return $result;
   }
-  public static function findAll(): array
+  public static function findAll():array
   {
     $sql = "select * from " . self::table();
     return self::findBy($sql);
@@ -47,7 +47,7 @@ abstract class Model implements IModel
     $sql = "select * from " . self::table() . "where id=?";
     return self::findBy($sql,[$id]);
   }
-  public static function findBy(string $sql, array $data = null, $single = false): object|null|array
+  public static function findBy(string $sql, array $data = [], $single = false): object|null|array
   {
     $db = self::database();
     $db->connexionBD();

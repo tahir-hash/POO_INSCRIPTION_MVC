@@ -14,5 +14,9 @@
             "email": "mbayepro6@gmail.com"
         }
     ],
-    "require": {}
+    "require": {
+        "digiaonline/instance-factory": "^1.1",
+        "nette/utils": "^3.2",
+        "symfony/validator": "^6.0"
+    }
 }

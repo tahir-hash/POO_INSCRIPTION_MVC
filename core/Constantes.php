@@ -11,4 +11,5 @@ class Constantes
     {
         return str_replace("public", "", $_SERVER["DOCUMENT_ROOT"]);
     }
+    
 }
