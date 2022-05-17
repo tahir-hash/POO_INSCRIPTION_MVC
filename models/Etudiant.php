@@ -51,11 +51,7 @@ class Etudiant extends User
   {
     return parent::$role = 'ROLE_ETUDIANT';
   }
-  public static function findAll(): array
-  {
-    $sql = "select (`id`,`nom_complet`, `role`,`sexe`,`login`,`password`) from " . parent::table() . " where role  like ?";
-    return parent::findBy($sql, [self::getRole()]);
-  }
+  
   public function insert(): int
   {
     $db = self::database();

@@ -39,7 +39,7 @@ abstract class Model implements IModel
   }
   public static function findAll():array
   {
-    $sql = "select * from " . self::table();
+    $sql = "select * from " . get_called_class()::table();
     return self::findBy($sql);
   }
   public static function findById(int $id): object|null

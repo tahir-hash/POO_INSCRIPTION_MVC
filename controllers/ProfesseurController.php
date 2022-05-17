@@ -12,7 +12,7 @@ class ProfesseurController extends Controller{
     }
     public function listerProf(){
         if ($this->request->isGet()) {
-            if (!Role::isConnect()) {
+            if (!Role::isRP()) {
                 $this->redirectToRoute('login');
             } else {
                 $data=Professeur::findAll();

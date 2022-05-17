@@ -34,11 +34,7 @@ class Professeur extends Personne
   {
     return parent::$role = 'ROLE_PROFESSEUR';
   }
-  public static function findAll(): array
-  {
-    $sql = "select * from " . parent::table() . " where role  like ?";
-    return parent::findBy($sql, [self::getRole()]);
-  }
+ 
 
   public static function delete(int $id): int
   {

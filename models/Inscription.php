@@ -103,4 +103,24 @@ class Inscription extends Model
         and i.id=?";
        return parent::findBy($sql, [$this->id],true);
     }
+
+    public static function findAll(): array
+    {
+        $sql="select i.etat_ins,p.nom_complet,p.matricule,p.sexe,c.libelle as 'libClasse',a.libelle
+                from " . self::table() . " i,personne p,classe c,annee_scolaire a
+              where i.etudiant_id=p.id
+              and i.classe_id=c.id
+              and i.annee_id=a.id
+              and p.role='ROLE_ETUDIANT'";
+        return parent::findBy($sql);
+    }
+    public static function demandes($idsess):array
+    {
+        $sql="select d.*              
+              from " . self::table() . " i,personne p,demande d
+              where i.id=d.inscription_id
+              and p.role='ROLE_ETUDIANT'
+              and p.id=?";
+        return parent::findBy($sql,[$idsess]);
+    }
 }

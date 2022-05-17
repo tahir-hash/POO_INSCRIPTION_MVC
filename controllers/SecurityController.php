@@ -20,7 +20,19 @@ class SecurityController extends Controller
             $user_connect = User::findUserByLoginAndPassword($_POST['login'], $_POST['password']);
             if ($user_connect != NULL) {
                 $this->session->setSession('user', $user_connect);
-                $this->render('personne/acceuil.html.php');
+                if(Role::isRP())
+                {
+                    $this->redirectToRoute('lister-profs');
+                }
+                if(Role::isEtudiant())
+                {
+                    $this->redirectToRoute('lister-own');
+                }
+                if(Role::isRP())
+                {
+                    dd('test');
+                    //$this->redirectToRoute('lister-profs');
+                }
             } else {
                 dd('error');
             }

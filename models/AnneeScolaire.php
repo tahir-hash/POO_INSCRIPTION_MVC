@@ -65,11 +65,7 @@ class AnneeScolaire extends Model
         return $this;
     }
     //others
-    public static function findAll(): array
-    {
-      $sql = "select id,libelle,etat from ".self::table();
-      return parent::findBy($sql);
-    }
+   
     public function insert(): int
     {
       $db = self::database();

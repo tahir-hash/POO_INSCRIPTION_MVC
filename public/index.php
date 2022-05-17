@@ -10,6 +10,8 @@ use Nette\Utils\Arrays;
 use App\Model\Professeur;
 use App\Model\Inscription;
 use App\Model\AnneeScolaire;
+use App\Model\Module;
+use App\Model\Personne;
 
 /*   ini_set('display_errors', 1);
   ini_set('display_startup_errors', 1);
@@ -19,8 +21,6 @@ use App\Model\AnneeScolaire;
   require_once("../core/Fonctions.php");
 
   require_once("../routes/Route.web.php");
-
-  //dd(Professeur::findAll());
 
 
 

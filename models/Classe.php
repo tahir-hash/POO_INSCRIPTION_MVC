@@ -108,12 +108,6 @@ class Classe extends Model
     //Fonctions navigationnelles
     //ManyToMany avec Professeur
 
-
-    public static function findAll(): array
-    {
-        $sql = "select id,libelle,filiere,niveau from " . self::table();
-        return parent::findBy($sql);
-    }
     //  (`libelle`,`filiere`,`niveau`,`rp_id`)
     public function insert(): int
     {

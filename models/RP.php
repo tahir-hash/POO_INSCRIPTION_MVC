@@ -14,11 +14,7 @@ class RP extends User
     {
         return parent::$role = 'ROLE_RP';
     }
-    public static function findAll(): array
-    {
-        $sql = "select * from " . parent::table() . " where role  like ?";
-        return parent::findBy($sql, [self::getRole()]);
-    }
+    
     public function insert(): int
     {
       $db = self::database();

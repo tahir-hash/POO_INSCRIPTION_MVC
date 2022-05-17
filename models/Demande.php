@@ -94,13 +94,6 @@ class Demande extends Model
        and d.id=?";
        return parent::findBy($sql, [$this->id],true);
     }
-
-    public static function findAll(): array
-    {
-        $sql = "select (`id`,`libelle`,`etat_demande`) from '" . self::table() . "'";
-        return parent::findBy($sql);
-    }
-
     public function insert(): int
     {
         $db = self::database();
@@ -111,4 +104,5 @@ class Demande extends Model
         echo $sql;
         return $result;
     }
+    
 }
