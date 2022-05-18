@@ -19,9 +19,9 @@ class Controller{
         return $instanced= InstanceFactory::fromProperties($classe,$data);
     }
     
-    public function render(string $path, array $data=[] ){
+    public function render(string $path, array $data=[]){
         $data["Constantes"]=Constantes::class;
-        $data["request"]=$this->request;
+       // $data["request"]=$this->request;
         ob_start();
         extract($data);
         require_once(Constantes::ROOT()."templates/".$path);

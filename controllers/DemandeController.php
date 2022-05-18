@@ -14,10 +14,12 @@ class DemandeController extends Controller{
             }
             else
             {
-                $data=Inscription::demandes($this->session->getSession('user')->id);
+                $demande=Inscription::demandes($this->session->getSession('user')->id);
                 //$data[]=$this->session->getSession('user')->nom_complet;
               //  dd($data);
-                $this->render('demande/liste.demande.etudiant.html.php',$data);
+                $this->render('demande/liste.demande.etudiant.html.php',$data=[
+                    "demande"=>$demande
+                ]);
             }
         }
     }

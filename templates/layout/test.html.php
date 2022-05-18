@@ -12,7 +12,7 @@
 </head>
 
 <body>
-<?php if(!$_SESSION==NULL) : ?>  
+<?php if(!$_SESSION['user']==NULL) : ?>  
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <!-- Container wrapper -->
@@ -26,27 +26,18 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <!-- Navbar brand -->
                 <a class="navbar-brand mt-2 mt-lg-0" href="#">
-                    <img src="<?= $Constantes::WEB_ROOT . 'image/logo.png' ?>" height="100" alt="MBAYE PRO Logo" loading="lazy" />
+                    <img src="../../public/image/logo.png" height="15" alt="MBAYE PRO Logo" loading="lazy" />
                 </a>
                 <!-- Left links -->
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link" href="<?= $Constantes::WEB_ROOT . 'add-classe' ?>">Creer classe</a>
+                        <a class="nav-link" href="#">Dashboard</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="<?= $Constantes::WEB_ROOT . 'classes' ?>">Lister classe</a>
+                        <a class="nav-link" href="#">Team</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="<?= $Constantes::WEB_ROOT . 'add-module' ?>">Creer module</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="<?= $Constantes::WEB_ROOT . 'lister-module' ?>">Lister Module</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="<?= $Constantes::WEB_ROOT . 'lister-profs' ?>">lister prof</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="<?= $Constantes::WEB_ROOT . 'lister-inscription' ?>">lister etudiant inscrits</a>
+                        <a class="nav-link" href="#">Projects</a>
                     </li>
                 </ul>
                 <!-- Left links -->
@@ -55,9 +46,6 @@
 
             <!-- Right elements -->
             <div class="d-flex align-items-center">
-            <button type="submit"  class="btn btn-danger">
-              <a class="badge" href="<?= $Constantes::WEB_ROOT."logout"?>"> LOG OUT</a>
-            </button>
                 <!-- Icon -->
                 <!-- <a class="text-reset me-3" href="#">
         <i class="fas fa-shopping-cart"></i>

@@ -13,8 +13,10 @@ class InscriptionController extends Controller{
             }
              else
             {
-                $data=Inscription::findAll();
-                $this->render('inscription/liste.etudiant.html.php',$data);
+                $inscrire=Inscription::findAll();
+                $this->render('inscription/liste.etudiant.html.php',$data=[
+                    'inscrire'=>$inscrire
+                ]);
             }
         }
     }

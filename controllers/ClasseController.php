@@ -11,7 +11,18 @@ class ClasseController extends Controller
 {
     public function listerClasse()
     {
-        dd("je suis dans le controller classe dans l action lister classe");
+        if ($this->request->isGet()) {
+            if (!Role::isRP()) {
+                $this->redirectToRoute('login');
+            }
+             else {
+                 $classe=Classe::findAll();
+                $this->render('classe/liste.classe.html.php',$data=[
+                    'classe'=>$classe
+                ]);
+            }
+        }
+        //dd("je suis dans le controller classe dans l action lister classe");
     }
 
     public function creerClasse()
@@ -31,8 +42,8 @@ class ClasseController extends Controller
                 'niveau' => $_POST['niveau']
             ]); */
             $classe = $this->instance(Classe::class, $_POST);
-            //$classe->insert();
-            dd($classe);
+            $classe->insert();
+            //dd($classe);
         }
     }
 }

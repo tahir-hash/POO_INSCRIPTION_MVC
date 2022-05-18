@@ -2,7 +2,7 @@
 
   <h1 class="card-title">La Liste des demandes de <?= strtoupper($_SESSION['user']->nom_complet);?></h1>
 
-  <table class="table">
+  <table class="table table-striped">
     <thead>
       <tr>
         <th scope="col">Libelle</th>
@@ -10,7 +10,7 @@
       </tr>
     </thead>
     <tbody>
-    <?php  foreach ($data  as $value) : ?>
+    <?php  foreach ($demande as $value) : ?>
         <tr>
           <td><?= $value->libelle ?></td>
           <td><?= $value->etat_demande ?></td>

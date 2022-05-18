@@ -1,7 +1,7 @@
 <div class="container mt-5">
   <h1 class="card-title">LISTE DES ETUDIANTS INSCRITS</h1>
 
-  <table class="table">
+  <table class="table table-striped">
     <thead>
       <tr>
         <th scope="col">#</th>
@@ -14,7 +14,7 @@
       </tr>
     </thead>
     <tbody>
-    <?php  foreach ($data  as $value) : ?>
+    <?php  foreach ($inscrire  as $value) : ?>
         <tr>
           <th scope="row"><?= $value->id ?></th>
           <td><?= $value->matricule ?></td>

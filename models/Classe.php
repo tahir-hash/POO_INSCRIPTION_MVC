@@ -114,7 +114,7 @@ class Classe extends Model
         $db = self::database();
         $db->connexionBD();
         $sql = "INSERT INTO " . self::table() . " (`libelle`,`filiere`,`niveau`,`rp_id`) VALUES (?,?,?,?);";
-        $result =  $db->executeUpdate($sql, [$this->libelleClasse, $this->filiere,$this->niveau,8]);
+        $result =  $db->executeUpdate($sql, [$this->libelleClasse, $this->filiere,$this->niveau,$_SESSION['user']->id]);
         $db->closeConnexion();
         echo $sql;
         return $result;

@@ -6,6 +6,7 @@ use App\Core\Role;
 use App\Core\Controller;
 use App\Model\Professeur;
 
+
 class ProfesseurController extends Controller{
     public function affecterClasse(){
         
@@ -15,8 +16,11 @@ class ProfesseurController extends Controller{
             if (!Role::isRP()) {
                 $this->redirectToRoute('login');
             } else {
-                $data=Professeur::findAll();
-                $this->render('prof/liste.prof.html.php',$data);
+                $profs=Professeur::findAll();
+               //dd($data);
+                $this->render('prof/liste.prof.html.php',$data=[
+                    "profs"=>$profs
+                ]);
             }
         }
         /* if ($this->request->isPost()) {

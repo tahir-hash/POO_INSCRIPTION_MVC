@@ -2,6 +2,7 @@
 
 use App\Core\Router;
 use App\Controller\ClasseController;
+use App\Controller\ModuleController;
 use App\Controller\DemandeController;
 use App\Controller\PersonneController;
 use App\Controller\SecurityController;
@@ -19,11 +20,8 @@ $router->route('/personnes',[PersonneController::class,"lister"]);
 $router->route('/lister-profs',[ProfesseurController::class,"listerProf"]);
 $router->route('/lister-inscription',[InscriptionController::class,"listerEtudiant"]);
 $router->route('/lister-own',[DemandeController::class,"listOwnDemand"]);
-
-
-
-
-
+$router->route('/lister-module',[ModuleController::class,"listerModule"]);
+$router->route('/add-module',[ModuleController::class,"ajouterModule"]);
 
 
 try {
