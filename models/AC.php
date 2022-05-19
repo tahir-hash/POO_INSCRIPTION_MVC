@@ -28,7 +28,6 @@ class AC extends User
     $sql = "INSERT INTO " .parent::table()." (`nom_complet`, `role`,`sexe`,`login`,`password`) VALUES (?,?,?,?,?);";
     $result =  $db->executeUpdate($sql, [$this->nomComplet, parent::$role,$this->sexe,$this->login,$this->password]);
     $db->closeConnexion();
-    echo $sql;
     return $result;
   }
 

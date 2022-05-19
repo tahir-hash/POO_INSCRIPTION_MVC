@@ -4,26 +4,17 @@ namespace App\Model;
 
 class Professeur extends Personne
 {
-
   private string $grade;
 
-  public function __construct()
+  public function __construct(?string $nomComplet = null, ?string $sexe = null, ?string $grade=null)
   {
-    parent::$role = "ROLE_RP";
+    $this->nomComplet = $nomComplet;
+    $this->sexe  = $sexe;
+    $this->grade=$grade;
+    parent::$role = "ROLE_PROFESSEUR";
   }
 
-  public function getGrade()
-  {
-    return $this->grade;
-  }
 
-
-  public function setGrade($grade)
-  {
-    $this->grade = $grade;
-
-    return $this;
-  }
   //Fonctions navigationnelles
   //ManyToMany avec Classe
   public function classes(): array
@@ -34,7 +25,7 @@ class Professeur extends Personne
   {
     return parent::$role = 'ROLE_PROFESSEUR';
   }
- 
+
 
   public static function delete(int $id): int
   {
@@ -51,14 +42,11 @@ class Professeur extends Personne
   {
     $db = self::database();
     $db->connexionBD();
-    $sql = "INSERT INTO `personne` (`nom_complet`, `role`,`grade`,`sexe`) VALUES (?,?,?,?);";
-    $result =  $db->executeUpdate($sql, [$this->nomComplet, parent::$role, $this->grade, $this->sexe]);
+    $sql = "INSERT INTO " . parent::table() . "(`nom_complet`, `role`,`grade`,`sexe`) VALUES (?,?,?,?);";
+    $result =  $db->executeUpdate($sql, [$this->nomComplet, self::$role, $this->grade, $this->sexe]);
     $db->closeConnexion();
-    echo $sql;
     return $result;
   }
-
-
   public function rp(): RP
   {
     $sql = "select p.* from " . parent::table() . " m,personne p

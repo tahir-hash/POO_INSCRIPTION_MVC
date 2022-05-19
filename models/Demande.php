@@ -101,7 +101,6 @@ class Demande extends Model
         $sql = "INSERT INTO " . self::table() . " (`libelle`,`etat_demande`,`inscription_id`,`rp_id`) VALUES (?,?,?,?);";
         $result =  $db->executeUpdate($sql, [$this->libelleDemande, $this->etat,1,8]);
         $db->closeConnexion();
-        echo $sql;
         return $result;
     }
     

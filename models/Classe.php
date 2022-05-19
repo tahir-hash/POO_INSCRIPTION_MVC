@@ -14,8 +14,8 @@ class Classe extends Model
 
     public function __construct(?string $libelleClasse=null,?string $filiere=null, ?string $niveau=null)
     {
-        $this->libelleClasse                = $libelleClasse;
-        $this->filiere                 = $filiere;
+        $this->libelleClasse= $libelleClasse;
+        $this->filiere= $filiere;
         $this->niveau = $niveau;
     }
 
@@ -116,7 +116,6 @@ class Classe extends Model
         $sql = "INSERT INTO " . self::table() . " (`libelle`,`filiere`,`niveau`,`rp_id`) VALUES (?,?,?,?);";
         $result =  $db->executeUpdate($sql, [$this->libelleClasse, $this->filiere,$this->niveau,$_SESSION['user']->id]);
         $db->closeConnexion();
-        echo $sql;
         return $result;
     }
     //fonctions navigationnelles

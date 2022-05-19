@@ -7,6 +7,7 @@
       <tr>
         <th scope="col">Libelle</th>
         <th scope="col">Etat demande</th>
+        <th scope="col">ACTIONS</th>
       </tr>
     </thead>
     <tbody>
@@ -14,6 +15,11 @@
         <tr>
           <td><?= $value->libelle ?></td>
           <td><?= $value->etat_demande ?></td>
+          <td>
+            <button type="submit" class="btn btn-primary m-3">
+              <a class="badge" href="<?= $Constantes::WEB_ROOT . "logout" ?>"> DETAILS</a>
+            </button>
+          </td>
         </tr>
       <?php endforeach ?>
     </tbody>

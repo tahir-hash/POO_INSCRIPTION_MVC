@@ -11,12 +11,8 @@ abstract class Personne extends Model
     protected int $id;
     protected string $nomComplet;
     protected string $sexe;
-
-    //Attributs classes ou static 
     protected static string $role;
-    //Methodes Abstraites
-
-    //Constructeur Par defaut
+   
     public function __construct()
     {
     }

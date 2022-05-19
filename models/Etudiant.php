@@ -6,9 +6,13 @@ class Etudiant extends User
 {
   public string $matricule;
   private string $adresse;
-  public function __construct()
+  public function __construct(?string $nomComplet = null, ?string $sexe = null,?string $adresse=null)
   {
-    self::$role = "ROLE_ETUDIANT";
+    $this->nomComplet = $nomComplet;
+    $this->sexe  = $sexe;
+    ///$this->matricule=$matricule;
+    $this->adresse=$adresse;
+    parent::$role = "ROLE_ETUDIANT";
   }
   /**
    * Get the value of matricule
@@ -52,17 +56,24 @@ class Etudiant extends User
     return parent::$role = 'ROLE_ETUDIANT';
   }
   
-  public function insert(): int
+  /* public function insert(): int
   {
     $db = self::database();
     $db->connexionBD();
     $sql = "INSERT INTO " .parent::table()." (`nom_complet`, `role`,`sexe`,`login`,`password`) VALUES (?,?,?,?,?);";
     $result =  $db->executeUpdate($sql, [$this->nomComplet, parent::$role,$this->sexe,$this->login,$this->password]);
     $db->closeConnexion();
-    echo $sql;
+    return $result;
+  } */
+  public function insert(): int
+  {
+    $db = self::database();
+    $db->connexionBD();
+    $sql = "INSERT INTO " .parent::table()." (`nom_complet`, `role`,`sexe`) VALUES (?,?,?);";
+    $result =  $db->executeUpdate($sql, [$this->nomComplet, parent::$role,$this->sexe]);
+    $db->closeConnexion();
     return $result;
   }
-
   public function inscriptions():array
   {
     $sql = "select i.* from " . self::table() . " p,inscription i

@@ -38,8 +38,6 @@ class Database
     {
         $query = $this->pdo->prepare($sql);
         $query->execute($data);
-        $result = $query->rowCount();
-        //insert  => retourner l id généré
-        return $result;
+        return $this->pdo->lastInsertId('id');
     }
 }

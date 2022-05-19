@@ -18,11 +18,12 @@ $router->route('/classes',[ClasseController::class,"listerClasse"]);
 $router->route('/add-classe',[ClasseController::class,"creerClasse"]);
 $router->route('/personnes',[PersonneController::class,"lister"]);
 $router->route('/lister-profs',[ProfesseurController::class,"listerProf"]);
+$router->route('/add-prof',[ProfesseurController::class,"ajouterProf"]);
 $router->route('/lister-inscription',[InscriptionController::class,"listerEtudiant"]);
+$router->route('/add-inscription',[InscriptionController::class,"inscrireEtudiant"]);
 $router->route('/lister-own',[DemandeController::class,"listOwnDemand"]);
 $router->route('/lister-module',[ModuleController::class,"listerModule"]);
 $router->route('/add-module',[ModuleController::class,"ajouterModule"]);
-
 
 try {
   $router->resolve();

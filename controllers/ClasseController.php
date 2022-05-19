@@ -36,14 +36,9 @@ class ClasseController extends Controller
             }
         }
         if ($this->request->isPost()) {
-            /* $classe= InstanceFactory::fromProperties(Classe::class, [
-                'libelleClasse'                => $_POST['libelleClasse'],
-                'filiere'                 => $_POST['filiere'],
-                'niveau' => $_POST['niveau']
-            ]); */
             $classe = $this->instance(Classe::class, $_POST);
             $classe->insert();
-            //dd($classe);
+            $this->render('classe/create.html.php');
         }
     }
 }

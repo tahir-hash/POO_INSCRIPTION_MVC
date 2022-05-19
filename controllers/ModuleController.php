@@ -38,6 +38,8 @@ class ModuleController extends Controller
             ]); */
             $module = $this->instance(Module::class, $_POST);
             $module->insert();
+            $this->render('module/create.html.php');
+
             //dd($classe);
         }
     }

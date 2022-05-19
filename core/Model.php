@@ -34,7 +34,6 @@ abstract class Model implements IModel
     $sql = "delete from " . self::table() . " where id=?";
     $result =  $db->executeUpdate($sql, [$id]);
     $db->closeConnexion();
-    echo $sql;
     return $result;
   }
   public static function findAll():array
@@ -55,4 +54,6 @@ abstract class Model implements IModel
     $db->closeConnexion();
     return $result;
   }
+
+  
 }
