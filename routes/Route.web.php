@@ -22,6 +22,7 @@ $router->route('/add-prof',[ProfesseurController::class,"ajouterProf"]);
 $router->route('/lister-inscription',[InscriptionController::class,"listerEtudiant"]);
 $router->route('/add-inscription',[InscriptionController::class,"inscrireEtudiant"]);
 $router->route('/lister-own',[DemandeController::class,"listOwnDemand"]);
+$router->route('/add-demande',[DemandeController::class,"addDemande"]);
 $router->route('/lister-module',[ModuleController::class,"listerModule"]);
 $router->route('/add-module',[ModuleController::class,"ajouterModule"]);
 

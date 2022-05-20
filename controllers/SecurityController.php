@@ -28,10 +28,9 @@ class SecurityController extends Controller
                 {
                     $this->redirectToRoute('lister-own');
                 }
-                if(Role::isRP())
+                if(Role::isAC())
                 {
-                    dd('test');
-                    //$this->redirectToRoute('lister-profs');
+                    $this->redirectToRoute('lister-inscription'); 
                 }
             } else {
                 dd('error');

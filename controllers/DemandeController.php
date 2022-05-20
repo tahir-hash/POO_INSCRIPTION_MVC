@@ -23,4 +23,20 @@ class DemandeController extends Controller{
             }
         }
     }
+    public function addDemande(){
+        if ($this->request->isGet()) {
+            if (!Role::isEtudiant()) {
+                $this->redirectToRoute('login');
+            }
+            else
+            {
+                $this->render('demande/create.html.php');
+            }
+        }
+        if ($this->request->isPost()) {
+            $demande = $this->instance(Demande::class, $_POST);
+            $demande->insert();
+            $this->render('classe/create.html.php');
+        }
+    }
 }

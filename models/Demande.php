@@ -9,7 +9,7 @@ class Demande extends Model
     private string $libelleDemande;
     private string $etat;
 
-    public function __construct()
+    public function __construct(?string $libelleDemande=null)
     {
         $this->etat = "En cours";
     }

@@ -1,3 +1,8 @@
+<?php
+
+use App\Core\Role;
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -30,33 +35,46 @@
           </a>
           <!-- Left links -->
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item">
-              <a class="nav-link text-light h5" href="<?= $Constantes::WEB_ROOT . 'add-inscription' ?>">Inscrire un etudiant</a>
-          </li>
-            <li class="nav-item">
-              <a class="nav-link text-light h5" href="<?= $Constantes::WEB_ROOT . 'add-classe' ?>">Creer classe</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link text-light h5" href="<?= $Constantes::WEB_ROOT . 'classes' ?>">Lister classe</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link text-light h5" href="<?= $Constantes::WEB_ROOT . 'add-module' ?>">Ajouter module</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link text-light h5" href="<?= $Constantes::WEB_ROOT . 'lister-module' ?>">Lister Module</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link text-light h5" href="<?= $Constantes::WEB_ROOT . 'add-prof' ?>">Ajouter prof</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link text-light h5" href="<?= $Constantes::WEB_ROOT . 'lister-profs' ?>">lister prof</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link text-light h5" href="<?= $Constantes::WEB_ROOT . 'lister-inscription' ?>">lister etudiant inscrits</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link text-light h5" href="<?= $Constantes::WEB_ROOT . 'lister-own' ?>">Lister mes demandes</a>
-            </li>
+            <?php if (Role::isRP()) : ?>
+              <li class="nav-item">
+                <a class="nav-link text-light h5" href="<?= $Constantes::WEB_ROOT . 'add-classe' ?>">Creer classe</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link text-light h5" href="<?= $Constantes::WEB_ROOT . 'classes' ?>">Lister classe</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link text-light h5" href="<?= $Constantes::WEB_ROOT . 'add-module' ?>">Ajouter module</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link text-light h5" href="<?= $Constantes::WEB_ROOT . 'lister-module' ?>">Lister Module</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link text-light h5" href="<?= $Constantes::WEB_ROOT . 'add-prof' ?>">Ajouter prof</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link text-light h5" href="<?= $Constantes::WEB_ROOT . 'lister-profs' ?>">lister prof</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link text-light h5" href="<?= $Constantes::WEB_ROOT . 'lister-inscription' ?>">lister etudiant inscrits</a>
+              </li>
+            <?php endif ?>
+            <?php if (Role::isAC()) : ?>
+              <li class="nav-item">
+                <a class="nav-link text-light h5" href="<?= $Constantes::WEB_ROOT . 'add-inscription' ?>">Inscrire un etudiant</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link text-light h5" href="<?= $Constantes::WEB_ROOT . 'lister-inscription' ?>">lister etudiant inscrits</a>
+              </li>
+            <?php endif ?>
+            <?php if (Role::isEtudiant()) : ?>
+              <li class="nav-item">
+                <a class="nav-link text-light h5" href="<?= $Constantes::WEB_ROOT . 'lister-own' ?>">Lister mes demandes</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link text-light h5" href="<?= $Constantes::WEB_ROOT . 'add-demande' ?>">Formuler Demandes</a>
+              </li>
+            <?php endif ?>
+
           </ul>
           <!-- Left links -->
         </div>
@@ -67,11 +85,11 @@
           <button type="submit" class="btn btn-danger m-3">
             <a class="badge" href="<?= $Constantes::WEB_ROOT . "logout" ?>"> LOG OUT</a>
           </button>
-         
+
         </div>
     </nav>
   <?php endif ?>
-       <!-- END NAVBAR-->
+  <!-- END NAVBAR-->
   <?= $contents_for_views ?>
   <script src="<?= $Constantes::WEB_ROOT . 'bootstrap/bootstrap.bundle.min.js' ?>"></script>
 </body>
