@@ -107,8 +107,15 @@ class Classe extends Model
     }
     //Fonctions navigationnelles
     //ManyToMany avec Professeur
+    public static function professeurs(int $id):array|null|object
+    {
+        $sql = "select p.* from " . self::table() . " c,personne p,prof_classe pc
+        where  pc.prof_id=p.id
+        and pc.classe_id=c.id
+       and c.id=?";
+       return parent::findBy($sql, [$id]);
+    }
 
-    //  (`libelle`,`filiere`,`niveau`,`rp_id`)
     public function insert(): int
     {
         $db = self::database();

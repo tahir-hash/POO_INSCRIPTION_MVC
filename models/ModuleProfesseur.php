@@ -6,10 +6,14 @@ use App\Core\Model;
 class ModuleProfesseur extends Model
 {
     private int $id;
-    private int $profId;
     private int $moduleId;
+    private int $profId;
     
-
+    public function __construct(?int $moduleId = null, ?int $profId = null)
+    {
+        $this->moduleId = $moduleId;
+        $this->profId  = $profId;
+    }
     /**
      * Get the value of id
      */ 
@@ -68,5 +72,18 @@ class ModuleProfesseur extends Model
         $this->moduleId = $moduleId;
 
         return $this;
+    }
+    public static function table()
+    {
+        return parent::$table = "prof_module";
+    }
+    public function insert(): int
+    {
+        $db = self::database();
+        $db->connexionBD();
+        $sql = "INSERT INTO " . self::table() . " (`module_id`,`prof_id`) VALUES (?,?);";
+        $result =  $db->executeUpdate($sql, [$this->moduleId, $this->profId]);
+        $db->closeConnexion();
+        return $result;
     }
 }

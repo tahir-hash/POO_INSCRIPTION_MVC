@@ -1,15 +1,19 @@
 <div class="container mt-5">
   <h1 class="card-title">LISTE DES PROFS</h1>
   <button type="submit" class="btn btn-primary m-3">
-    <a class="badge" href="<?= $Constantes::WEB_ROOT ."add-prof" ?>">AJOUTER PROFESSEUR</a>
+    <a class="badge" href="<?= $Constantes::WEB_ROOT . "add-prof" ?>">AJOUTER PROFESSEUR</a>
   </button>
-  <select class="form-select w-50" aria-label="Default select example">
-  <option selected>Filtrer par Module</option>
-  <option value="1">One</option>
-  <option value="2">Two</option>
-  <option value="3">Three</option>
-</select>
-  <table class="table table-striped">
+  <form action="<?= $Constantes::WEB_ROOT . "lister-profs" ?>" method="POST" id="form">
+  <select class="form-select w-50" aria-label="Default select example" id="selection" name="module">
+    <option value="" selected disabled>Filtrer par Module</option>
+    <?php foreach ($modules as $module) : ?>
+      <option value="<?= $module->id ?>"><?= $module->libelle ?></option>
+    <?php endforeach ?>
+  </select>
+  <input class=" col-1  btn btn-primary btn-lg" type="submit" value="Search" id="submit_prof" />
+
+  </form>
+  <table class="table table-striped" id="test">
     <thead>
       <tr>
         <th scope="col">#</th>
@@ -26,14 +30,9 @@
           <td><?= $value->nom_complet ?></td>
           <td><?= $value->grade ?></td>
           <td><?= $value->role ?></td>
-          <!-- <td>
-            <i class="fa fa-edit fa-2x blue"></i>
-            <i class="fa fa-trash fa-2x red"></i>
-            <i class="fa fa-circle-info fa-2x vert"></i>
-          </td> -->
           <td>
             <button type="submit" class="btn btn-primary m-3">
-              <a class="badge" href="<?= $Constantes::WEB_ROOT . "logout" ?>"> DETAILS</a>
+              <a class="badge" href="<?= $Constantes::WEB_ROOT . "logout" ?>"> AFFECTER CLASSE</a>
             </button>
           </td>
         </tr>

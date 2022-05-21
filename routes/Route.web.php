@@ -25,6 +25,7 @@ $router->route('/lister-own',[DemandeController::class,"listOwnDemand"]);
 $router->route('/add-demande',[DemandeController::class,"addDemande"]);
 $router->route('/lister-module',[ModuleController::class,"listerModule"]);
 $router->route('/add-module',[ModuleController::class,"ajouterModule"]);
+$router->route('/lister-prof-mod',[ModuleController::class,"listerProfModule"]);
 
 try {
   $router->resolve();

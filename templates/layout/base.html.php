@@ -10,7 +10,7 @@ use App\Core\Role;
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css">
+  <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css"> -->
   <link rel="stylesheet" href="<?= $Constantes::WEB_ROOT . 'css/login.style.css' ?>">
   <link rel="stylesheet" href="<?= $Constantes::WEB_ROOT . 'bootstrap/bootstrap.min.css' ?>">
   <title>Document</title>
@@ -37,19 +37,10 @@ use App\Core\Role;
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <?php if (Role::isRP()) : ?>
               <li class="nav-item">
-                <a class="nav-link text-light h5" href="<?= $Constantes::WEB_ROOT . 'add-classe' ?>">Creer classe</a>
-              </li>
-              <li class="nav-item">
                 <a class="nav-link text-light h5" href="<?= $Constantes::WEB_ROOT . 'classes' ?>">Lister classe</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link text-light h5" href="<?= $Constantes::WEB_ROOT . 'add-module' ?>">Ajouter module</a>
-              </li>
-              <li class="nav-item">
                 <a class="nav-link text-light h5" href="<?= $Constantes::WEB_ROOT . 'lister-module' ?>">Lister Module</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link text-light h5" href="<?= $Constantes::WEB_ROOT . 'add-prof' ?>">Ajouter prof</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link text-light h5" href="<?= $Constantes::WEB_ROOT . 'lister-profs' ?>">lister prof</a>
@@ -70,9 +61,6 @@ use App\Core\Role;
               <li class="nav-item">
                 <a class="nav-link text-light h5" href="<?= $Constantes::WEB_ROOT . 'lister-own' ?>">Lister mes demandes</a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link text-light h5" href="<?= $Constantes::WEB_ROOT . 'add-demande' ?>">Formuler Demandes</a>
-              </li>
             <?php endif ?>
 
           </ul>
@@ -92,6 +80,10 @@ use App\Core\Role;
   <!-- END NAVBAR-->
   <?= $contents_for_views ?>
   <script src="<?= $Constantes::WEB_ROOT . 'bootstrap/bootstrap.bundle.min.js' ?>"></script>
+  <script src="<?= $Constantes::WEB_ROOT . 'js/script.js' ?>"></script>
+  <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="//cdn.datatables.net/1.12.0/js/jquery.dataTables.min.js"></script>
+  
 </body>
 
 </html>

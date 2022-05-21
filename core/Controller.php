@@ -18,7 +18,10 @@ class Controller{
     {
         return $instanced= InstanceFactory::fromProperties($classe,$data);
     }
-    
+    public function getMatricule(int $id):string
+    {
+        return "etud".$id;
+    }
     public function render(string $path, array $data=[]){
         $data["Constantes"]=Constantes::class;
        // $data["request"]=$this->request;

@@ -11,6 +11,7 @@ class Demande extends Model
 
     public function __construct(?string $libelleDemande=null)
     {
+        $this->libelleDemande = $libelleDemande;
         $this->etat = "En cours";
     }
     /**

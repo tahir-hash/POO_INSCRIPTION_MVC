@@ -26,7 +26,7 @@ class InscriptionController extends Controller{
 
     public function inscrireEtudiant(){
         if ($this->request->isGet()) {
-            if (!Role::isRP()) {
+            if (!Role::isAC()) {
                 $this->redirectToRoute('login');
             }
              else
@@ -44,6 +44,7 @@ class InscriptionController extends Controller{
                 'adresse'=> $_POST['adresse']
             ]);
             $id_etu=$etudiant->insert();
+            
             //dd($id_etu);
             $inscriptio_etu=$this->instance(Inscription::class,[
                 'etudiant_id'                => $id_etu,

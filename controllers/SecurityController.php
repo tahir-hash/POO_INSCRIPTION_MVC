@@ -20,6 +20,7 @@ class SecurityController extends Controller
             $user_connect = User::findUserByLoginAndPassword($_POST['login'], $_POST['password']);
             if ($user_connect != NULL) {
                 $this->session->setSession('user', $user_connect);
+                $this->session->setSession('annee',"2020-2021");
                 if(Role::isRP())
                 {
                     $this->redirectToRoute('lister-profs');
@@ -30,7 +31,7 @@ class SecurityController extends Controller
                 }
                 if(Role::isAC())
                 {
-                    $this->redirectToRoute('lister-inscription'); 
+                    $this->redirectToRoute('add-inscription'); 
                 }
             } else {
                 dd('error');

@@ -5,41 +5,57 @@
                 <div class="card shadow-2-strong card-registration" style="border-radius: 15px;">
                     <div class="card-body p-4 p-md-5">
                         <h3 class="mb-4 pb-2 pb-md-0 mb-md-5">Ajouter Prof</h3>
-                        <form action="<?= $Constantes::WEB_ROOT."add-prof"?>" method="POST">
+                        <form action="<?= $Constantes::WEB_ROOT . "add-prof" ?>" method="POST">
 
                             <div class="row">
                                 <div class="col-md-6 mb-4">
-
                                     <div class="form-outline">
                                         <label class="form-label" for="firstName">Nom Complet</label>
                                         <input type="text" id="firstName" name="nomComplet" class="form-control form-control-lg" />
                                     </div>
+                                </div>
+                                <div class="col-md-6 mb-4">
+                                    <h4>Affecter des classes</h4>
+                                    <?php foreach ($classes as $classe) : ?>
+                                        <div class="form-check">
+                                            <input class="form-check-input" name="classe[]" type="checkbox" value="<?= $classe->id ?>" id="classe" />
+                                            <label class="form-check-label" for="classe"><?= $classe->libelle ?></label>
+                                        </div>
+                                    <?php endforeach ?>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-6 mb-4">
                                     <h6 class="mb-2 pb-1">Sexe:</h6>
                                     <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="sexe" id="maleGender" value="Maculin" checked/>
+                                        <input class="form-check-input" type="radio" name="sexe" id="maleGender" value="Maculin" checked />
                                         <label class="form-check-label" for="maleGender">Maculin</label>
                                     </div>
                                     <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="sexe" id="femaleGender" value="Feminin"  />
+                                        <input class="form-check-input" type="radio" name="sexe" id="femaleGender" value="Feminin" />
                                         <label class="form-check-label" for="femaleGender">Feminin</label>
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-6 mb-4">
-
                                     <div class="form-outline">
                                         <label class="form-label" for="firstName">Grade</label>
                                         <input type="text" id="firstName" name="grade" class="form-control form-control-lg" />
                                     </div>
                                 </div>
+                                <div class="col-md-6 mb-4">
+                                    <h5>Affecter des modules</h5>
+                                    <?php foreach ($modules as $module) : ?>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" name="module[]" value="<?= $module->id ?>" id="module" />
+                                            <label class="form-check-label" for="module"><?= $module->libelle ?></label>
+                                        </div>
+                                    <?php endforeach ?>
+                                </div>
                             </div>
                             <div class="mt-4 pt-2">
-                                <input class="btn btn-primary btn-lg" type="submit" value="Submit" />
+                                <input class="btn btn-primary btn-lg" type="submit" value="Submit" id="submit_prof" />
                             </div>
 
                         </form>

@@ -37,7 +37,7 @@
                                         <label class="form-check-label" for="femaleGender">Feminin</label>
                                     </div>
                                 </div>
-                            </div>
+                            </div>g
                             <h6 class="mb-2 pb-1">Classe:</h6>
                             <div class="row">
                                 <div class="col-12">

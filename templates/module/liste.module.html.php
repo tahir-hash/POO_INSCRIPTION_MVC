@@ -3,12 +3,16 @@
   <button type="submit" class="btn btn-primary m-3">
     <a class="badge" href="<?= $Constantes::WEB_ROOT . "add-module" ?>">AJOUTER UN MODULE</a>
   </button>
-  <select class="form-select w-50" aria-label="Default select example">
-    <option selected>Filtrer par Prof</option>
-    <option value="1">One</option>
-    <option value="2">Two</option>
-    <option value="3">Three</option>
+  <form action="<?= $Constantes::WEB_ROOT . "lister-module" ?>" method="POST">
+  <select class="form-select w-50" aria-label="Default select example" name="prof">
+    <option value="" selected disabled>Filtrer par Professeur</option>
+    <?php foreach ($profs  as $prof) : ?>
+      <option value="<?= $prof->id ?>"><?= $prof->nom_complet ?></option>
+    <?php endforeach ?>
   </select>
+  <input class=" col-1  btn btn-primary btn-lg" type="submit" value="Search" id="submit_prof" />
+  </form>
+  
   <table class="table table-striped">
     <thead>
       <tr>

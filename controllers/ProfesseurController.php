@@ -3,47 +3,79 @@
 namespace App\Controller;
 
 use App\Core\Role;
+use App\Model\Classe;
+use App\Model\Module;
 use App\Core\Controller;
 use App\Model\Professeur;
+use App\Model\ClasseProfesseur;
+use App\Model\ModuleProfesseur;
 
 
-class ProfesseurController extends Controller{
-    public function ajouterProf(){
-        if ($this->request->isGet()) {
-            if (!Role::isRP()) {
-                $this->redirectToRoute('login');
-            }
-             else {
-                $this->render('prof/create.html.php');
-            }
-        }
-        if ($this->request->isPost()) {
-            $profs = $this->instance(Professeur::class, $_POST);
-            $profs->insert();
-            $this->render('prof/create.html.php');
-        }
-    }
-    public function listerProf(){
+class ProfesseurController extends Controller
+{
+    public function ajouterProf()
+    {
         if ($this->request->isGet()) {
             if (!Role::isRP()) {
                 $this->redirectToRoute('login');
             } else {
-                $profs=Professeur::findAll();
-               //dd($data);
-                $this->render('prof/liste.prof.html.php',$data=[
-                    "profs"=>$profs
+                $classes = Classe::findAll();
+                $modules = Module::findAll();
+                // dd(end($profs));
+                $this->render('prof/create.html.php', $data = [
+                    "classes" => $classes,
+                    "modules" => $modules
                 ]);
             }
         }
-        /* if ($this->request->isPost()) {
-            //validation
-            $user_connect = User::findUserByLoginAndPassword($_POST['login'], $_POST['password']);
-            if ($user_connect != NULL) {
-                $this->session->setSession('user', $user_connect);
-                $this->render('personne/acceuil.html.php');
-            } else {
-                dd('error');
+        if ($this->request->isPost()) {
+            $profs = $this->instance(Professeur::class, [
+                'nomComplet' => $_POST['nomComplet'],
+                'sexe' => $_POST['sexe'],
+                'grade' => $_POST['grade']
+            ]);
+            $id_prof = $profs->insert();
+            foreach ($_POST['classe'] as $classeId) {
+                $prof_classe = $this->instance(ClasseProfesseur::class, [
+                    'profId' => $id_prof,
+                    'classeId' => $classeId
+                ]);
+                $prof_classe->insert();
             }
-        } */
+            foreach ($_POST['module'] as $moduleId) {
+                $prof_module = $this->instance(ModuleProfesseur::class, [
+                    'profId' => $id_prof,
+                    'moduleId' => $moduleId
+                ]);
+                $prof_module->insert();
+            }
+            $this->redirectToRoute('lister-profs');
+        }
+    }
+    public function listerProf()
+    {
+        if ($this->request->isGet()) {
+            if (!Role::isRP()) {
+                $this->redirectToRoute('login');
+            } else {
+                $profs = Professeur::findAll();
+                $modules = Module::findAll();
+                // dd(end($profs));
+                $this->render('prof/liste.prof.html.php', $data = [
+                    "profs" => $profs,
+                    "modules" => $modules
+                ]);
+            }
+        }
+        if ($this->request->isPost()) {
+            $profs = Module::professeurs($_POST['module']);
+            $modules = Module::findAll();
+            // dd(end($profs));
+            //dd($profs);
+            $this->render('prof/liste.prof.html.php', $data = [
+                "profs" => $profs,
+                "modules" => $modules
+            ]);
+        }
     }
 }

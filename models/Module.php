@@ -55,13 +55,21 @@ class Module extends Model
     {
         return parent::$table = "module";
     }
-    public function rp():RP
+    public function rp():object
     {
         $sql = "select p.* from " . self::table() . " m,personne p
         where  p.id=m.rp_id
         and p.role='ROLE_RP'
        and m.id=?";
        return parent::findBy($sql, [$this->id],true);
+    }
+    public static function professeurs($id):array|null|object
+    {
+        $sql = "select p.* from " . self::table() . " m,personne p,prof_module pm
+        where  pm.prof_id=p.id
+        and pm.module_id=m.id
+       and m.id=?";
+       return parent::findBy($sql, [$id]);
     }
     public function insert(): int
     {
