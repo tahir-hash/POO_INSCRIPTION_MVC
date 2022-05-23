@@ -69,7 +69,7 @@ class Inscription extends Model
         $db = self::database();
         $db->connexionBD();
         $sql = "INSERT INTO " . self::table() . " (`etudiant_id`,`classe_id`,`annee_id`,`ac_id`,`etat_ins`) VALUES (?,?,?,?,?);";
-        $result =  $db->executeUpdate($sql, [$this->etudiant_id,$this->classe,$this->annee_id,$_SESSION['user']->id,"en cours"]);
+        $result =  $db->executeUpdate($sql, [$this->etudiant_id,$this->classe,2,$_SESSION['user']->id,"en cours"]);
         $db->closeConnexion();
         return $result;
     }

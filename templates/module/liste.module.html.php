@@ -22,10 +22,10 @@
       </tr>
     </thead>
     <tbody>
-      <?php foreach ($module  as $value) : ?>
+      <?php foreach ($module  as $key=> $value) : ?>
         <tr>
-          <th scope="row"><?= $value->id ?></th>
-          <td><?= $value->libelle ?></td>
+          <th scope="row"><?= $key+1 ?></th>
+          <td><?= ucwords($value->libelle) ?></td>
           <td>
             <button type="submit" class="btn btn-info m-3">
               <a class="badge"> INFO</a>

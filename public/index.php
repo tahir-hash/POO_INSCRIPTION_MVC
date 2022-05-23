@@ -1,7 +1,11 @@
 <?php
 
-use App\Controller\ProfesseurController;
+use App\Model\test;
+use App\Model\Classe;
+use App\Model\Demande;
+use App\Model\Etudiant;
 use App\Model\Professeur;
+use App\Controller\ProfesseurController;
 
   ini_set('display_errors', 1);
   ini_set('display_startup_errors', 1);
@@ -13,5 +17,3 @@ use App\Model\Professeur;
   require_once("../routes/Route.web.php");
 
  //dd(Professeur::modules(24));
-//dd(ProfesseurController::getMatricule(3));
-  

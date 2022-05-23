@@ -11,7 +11,7 @@ class InscriptionController extends Controller{
     
     public function listerEtudiant(){
         if ($this->request->isGet()) {
-            if (!Role::isRP()) {
+            if (!Role::isRP()&& !Role::isAC()) {
                 $this->redirectToRoute('login');
             }
              else
@@ -51,7 +51,7 @@ class InscriptionController extends Controller{
                 'classe'                 => $_POST['classe']
             ]);
             $inscriptio_etu->insert();
-            $this->render('classe/create.html.php');
+            $this->render('inscription/inscrire.etudiant.html.php');
         }
     }
 

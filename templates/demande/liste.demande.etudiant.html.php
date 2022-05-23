@@ -27,10 +27,10 @@
       </tr>
     </thead>
     <tbody>
-      <?php foreach ($demande as $value) : ?>
+      <?php foreach ($demande as $key => $value) : ?>
         <tr>
-          <td><?= $value->libelle ?></td>
-          <td><?= $value->etat_demande ?></td>
+          <td><?= ucwords($value->libelle) ?></td>
+          <td><?= ucwords($value->etat_demande) ?></td>
           <td>
             <button type="submit" class="btn btn-primary m-3">
               <a class="badge" href="<?= $Constantes::WEB_ROOT . "logout" ?>"> DETAILS</a>

@@ -14,12 +14,12 @@
       </tr>
     </thead>
     <tbody>
-    <?php  foreach ($classe  as $value) : ?>
+    <?php  foreach ($classe  as $key=> $value) : ?>
         <tr>
-          <th scope="row"><?= $value->id ?></th>
-          <td><?= $value->libelle ?></td>
-          <td><?= $value->filiere ?></td>
-          <td><?= $value->niveau ?></td>
+          <th scope="row"><?= $key+1 ?></th>
+          <td><?= ucwords($value->libelle)  ?></td>
+          <td><?= ucwords($value->filiere)  ?></td>
+          <td><?= ucwords($value->niveau) ?></td>
           <td>
             <button type="submit" class="btn btn-warning m-3">
               <a class="badge" > MODIFIER</a>

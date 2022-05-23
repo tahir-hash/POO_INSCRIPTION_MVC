@@ -26,7 +26,7 @@ abstract class Model implements IModel
   {
     return 0;
   }
-  public static function delete(int $id): int
+  public static function delete($id): int
   {
 
     $db = self::database();

@@ -27,9 +27,9 @@
       <?php foreach ($profs as $key => $value) : ?>
         <tr>
           <th scope="row"><?= $key + 1 ?></th>
-          <td><?= $value->nom_complet ?></td>
-          <td><?= $value->grade ?></td>
-          <td><?= $value->role ?></td>
+          <td><?= ucwords($value->nom_complet) ?></td>
+          <td><?= ucwords($value->grade) ?></td>
+          <td><?= ucwords($value->role) ?></td>
           <td>
             <button type="submit" class="btn btn-primary m-3">
               <a class="badge" href="<?= $Constantes::WEB_ROOT . "logout" ?>"> AFFECTER CLASSE</a>

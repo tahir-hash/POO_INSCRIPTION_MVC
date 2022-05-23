@@ -6,22 +6,33 @@ class Etudiant extends User
 {
   public string $matricule;
   private string $adresse;
-  public function __construct(?string $nomComplet = null, ?string $sexe = null,?string $adresse=null)
+  public function __construct(?string $nomComplet = null, ?string $sexe = null, ?string $adresse = null)
   {
     $this->nomComplet = $nomComplet;
     $this->sexe  = $sexe;
     ///$this->matricule=$matricule;
-    $this->adresse=$adresse;
+    $this->adresse = $adresse;
     parent::$role = "ROLE_ETUDIANT";
   }
   /**
    * Get the value of matricule
    */
-  public function getMatricule()
+  public  function getMatricule()
   {
-    return $this->matricule;
+    $sql="select id FROM personne WHERE role ='ROLE_ETUDIANT' ORDER BY id DESC LIMIT 1";
+    $test=parent::findBy($sql);
+    $id=$test[0]->id+1;
+    return "ETU".$id;
   }
-
+  public function getLoginUser()
+  {
+    $name=explode(" ",$this->nomComplet);
+    $sql="select id FROM personne WHERE role ='ROLE_ETUDIANT' ORDER BY id DESC LIMIT 1";
+    $test=parent::findBy($sql);
+    $id=$test[0]->id+1;
+    $login=$name[0].$id."@proacademy.com";
+    return $login;
+  }
   /**
    * Set the value of matricule
    *
@@ -33,9 +44,6 @@ class Etudiant extends User
 
     return $this;
   }
-
-
-
   /**
    * Get the value of adresse
    */
@@ -55,30 +63,21 @@ class Etudiant extends User
   {
     return parent::$role = 'ROLE_ETUDIANT';
   }
-  
-  /* public function insert(): int
-  {
-    $db = self::database();
-    $db->connexionBD();
-    $sql = "INSERT INTO " .parent::table()." (`nom_complet`, `role`,`sexe`,`login`,`password`) VALUES (?,?,?,?,?);";
-    $result =  $db->executeUpdate($sql, [$this->nomComplet, parent::$role,$this->sexe,$this->login,$this->password]);
-    $db->closeConnexion();
-    return $result;
-  } */
+
   public function insert(): int
   {
     $db = self::database();
     $db->connexionBD();
-    $sql = "INSERT INTO " .parent::table()." (`nom_complet`, `role`,`sexe`) VALUES (?,?,?);";
-    $result =  $db->executeUpdate($sql, [$this->nomComplet, parent::$role,$this->sexe]);
+    $sql = "INSERT INTO " . parent::table() . " (`nom_complet`, `role`,`sexe`,`matricule`,`login`,`password`) VALUES (?,?,?,?,?,?);";
+    $result =  $db->executeUpdate($sql, [$this->nomComplet, parent::$role, $this->sexe,$this->getMatricule(),$this->getLoginUser(),"academy"]);
     $db->closeConnexion();
     return $result;
   }
-  public function inscriptions():array
+  public function inscriptions(): array
   {
     $sql = "select i.* from " . self::table() . " p,inscription i
         where  p.id=i.etudiant_id
         and p.id=?";
-       return parent::findBy($sql, [$this->id]);
+    return parent::findBy($sql, [$this->id]);
   }
 }

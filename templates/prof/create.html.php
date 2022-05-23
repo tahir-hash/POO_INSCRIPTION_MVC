@@ -16,12 +16,11 @@
                                 </div>
                                 <div class="col-md-6 mb-4">
                                     <h4>Affecter des classes</h4>
-                                    <?php foreach ($classes as $classe) : ?>
-                                        <div class="form-check">
-                                            <input class="form-check-input" name="classe[]" type="checkbox" value="<?= $classe->id ?>" id="classe" />
-                                            <label class="form-check-label" for="classe"><?= $classe->libelle ?></label>
-                                        </div>
-                                    <?php endforeach ?>
+                                    <select name="classe[]" class="select selectpicker" multiple data-mdb-placeholder="Example placeholder" multiple>
+                                        <?php foreach ($classes as $classe) : ?>
+                                            <option value="<?= $classe->id ?>"><?= $classe->libelle ?></option>
+                                        <?php endforeach ?>
+                                    </select>
                                 </div>
                             </div>
                             <div class="row">
@@ -46,13 +45,13 @@
                                 </div>
                                 <div class="col-md-6 mb-4">
                                     <h5>Affecter des modules</h5>
-                                    <?php foreach ($modules as $module) : ?>
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" name="module[]" value="<?= $module->id ?>" id="module" />
-                                            <label class="form-check-label" for="module"><?= $module->libelle ?></label>
-                                        </div>
-                                    <?php endforeach ?>
+                                    <select name="module[]" class="select selectpicker" multiple data-mdb-placeholder="Example placeholder" multiple>
+                                        <?php foreach ($modules as $module) : ?>
+                                            <option value="<?= $module->id ?>"><?= $module->libelle ?></option>
+                                        <?php endforeach ?>
+                                    </select>
                                 </div>
+
                             </div>
                             <div class="mt-4 pt-2">
                                 <input class="btn btn-primary btn-lg" type="submit" value="Submit" id="submit_prof" />

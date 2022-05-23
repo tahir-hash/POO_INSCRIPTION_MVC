@@ -13,7 +13,10 @@ use App\Core\Role;
   <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css"> -->
   <link rel="stylesheet" href="<?= $Constantes::WEB_ROOT . 'css/login.style.css' ?>">
   <link rel="stylesheet" href="<?= $Constantes::WEB_ROOT . 'bootstrap/bootstrap.min.css' ?>">
+  <link rel="stylesheet" href="<?= $Constantes::WEB_ROOT . 'css/bootstrap-select.min.css' ?>">
+
   <title>Document</title>
+  
 </head>
 
 <body>
@@ -79,11 +82,10 @@ use App\Core\Role;
   <?php endif ?>
   <!-- END NAVBAR-->
   <?= $contents_for_views ?>
+  <script src="<?= $Constantes::WEB_ROOT . 'bootstrap/jquery.min.js' ?>"></script>
   <script src="<?= $Constantes::WEB_ROOT . 'bootstrap/bootstrap.bundle.min.js' ?>"></script>
   <script src="<?= $Constantes::WEB_ROOT . 'js/script.js' ?>"></script>
-  <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-  <script src="//cdn.datatables.net/1.12.0/js/jquery.dataTables.min.js"></script>
-  
+  <script src="<?= $Constantes::WEB_ROOT . 'bootstrap/bootstrap-select.min.js' ?>"></script>
 </body>
 
 </html>

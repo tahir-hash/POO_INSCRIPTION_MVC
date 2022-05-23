@@ -18,7 +18,7 @@ class Classe extends Model
         $this->filiere= $filiere;
         $this->niveau = $niveau;
     }
-
+    
     //getters and setter
 
     /**

@@ -2,6 +2,7 @@
 
 namespace App\Core;
 use App\Core\Request;
+use App\Model\Etudiant;
 use Digia\InstanceFactory\InstanceFactory;
 
 class Controller{
@@ -18,10 +19,7 @@ class Controller{
     {
         return $instanced= InstanceFactory::fromProperties($classe,$data);
     }
-    public function getMatricule(int $id):string
-    {
-        return "etud".$id;
-    }
+    
     public function render(string $path, array $data=[]){
         $data["Constantes"]=Constantes::class;
        // $data["request"]=$this->request;
@@ -31,6 +29,7 @@ class Controller{
         $contents_for_views=ob_get_clean();
         require_once(Constantes::ROOT()."templates/layout/base.html.php");
     }
+    
 
     public function redirectToRoute($uri){
         header("location:".Constantes::WEB_ROOT.$uri);

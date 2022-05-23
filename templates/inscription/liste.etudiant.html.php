@@ -18,15 +18,15 @@
     <tbody>
     <?php  foreach ($inscrire  as $value) : ?>
         <tr>
-          <td><?= $value->matricule ?></td>
-          <td><?= $value->nom_complet ?></td>
-          <td><?= $value->libClasse ?></td>
-          <td><?= $value->sexe ?></td>
-          <td><?= $value->libelle ?></td>
-          <td><?= $value->etat_ins ?></td>
+          <td><?=ucwords($value->matricule)  ?></td>
+          <td><?=ucwords($value->nom_complet)  ?></td>
+          <td><?=ucwords($value->libClasse)  ?></td>
+          <td><?=ucwords($value->sexe)  ?></td>
+          <td><?=ucwords($value->libelle)  ?></td>
+          <td><?=ucwords($value->etat_ins)  ?></td>
           <td>
             <button type="submit" class="btn btn-info m-3">
-              <a class="badge" > INFO</a>
+              <a class="badge" > REINSCRIRE</a>
             </button>
           </td>
         </tr>
