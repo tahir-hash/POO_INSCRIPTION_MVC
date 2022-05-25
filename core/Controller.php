@@ -6,7 +6,7 @@ use App\Model\Etudiant;
 use Digia\InstanceFactory\InstanceFactory;
 
 class Controller{
-
+    protected string $layout="base";
     protected Request $request;
     protected Session $session;
     public function __construct(Request $request){
@@ -22,12 +22,14 @@ class Controller{
     
     public function render(string $path, array $data=[]){
         $data["Constantes"]=Constantes::class;
+        $data["Role"]=Role::class;
+        $data["Session"]=Session::class;
        // $data["request"]=$this->request;
         ob_start();
         extract($data);
         require_once(Constantes::ROOT()."templates/".$path);
         $contents_for_views=ob_get_clean();
-        require_once(Constantes::ROOT()."templates/layout/base.html.php");
+        require_once(Constantes::ROOT()."templates/layout/".$this->layout.".html.php");
     }
     
 

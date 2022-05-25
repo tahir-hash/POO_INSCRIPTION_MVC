@@ -73,12 +73,21 @@ class Demande extends Model
 
         return $this;
     }
-
+    
     public static function table()
     {
         return parent::$table = "demande";
     }
-
+    public static function alldemandes():array
+    {
+        $sql="select d.*, p.nom_complet,p.matricule              
+              from " . self::table() . " d,personne p,inscription i
+              where i.id=d.inscription_id
+              and   i.etudiant_id=p.id
+              and p.role='ROLE_ETUDIANT'
+              and d.etat_demande like 'en cours'";
+        return parent::findBy($sql);
+    }
     public function rp():RP
     {
         $sql = "select p.* from " . self::table() . " d,personne p

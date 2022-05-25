@@ -19,7 +19,7 @@ class Session
         $_SESSION[$key]=$data;
     }
 
-    public  function getSession(string $key)
+    public function getSession(string $key)
     {
         return $_SESSION[$key];
     }

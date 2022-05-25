@@ -22,29 +22,29 @@ abstract class Model implements IModel
   {
     return 0;
   }
-  public function update(): int
+  public  function update(): int
   {
     return 0;
   }
-  public static function delete($id): int
+  public static function delete(int $id): int
   {
 
     $db = self::database();
     $db->connexionBD();
-    $sql = "delete from " . self::table() . " where id=?";
+    $sql = "delete from " . get_called_class()::table() . " where id=?";
     $result =  $db->executeUpdate($sql, [$id]);
     $db->closeConnexion();
     return $result;
   }
-  public static function findAll():array
+  public static function findAll(): array
   {
     $sql = "select * from " . get_called_class()::table();
     return self::findBy($sql);
   }
   public static function findById(int $id): object|null
   {
-    $sql = "select * from " . self::table() . "where id=?";
-    return self::findBy($sql,[$id]);
+    $sql = "select * from " . get_called_class()::table() . " " . "where id=?";
+    return self::findBy($sql, [$id], true);
   }
   public static function findBy(string $sql, array $data = [], $single = false): object|null|array
   {
@@ -54,6 +54,4 @@ abstract class Model implements IModel
     $db->closeConnexion();
     return $result;
   }
-
-  
 }

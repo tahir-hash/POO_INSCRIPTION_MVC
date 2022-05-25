@@ -51,7 +51,7 @@ class InscriptionController extends Controller{
                 'classe'                 => $_POST['classe']
             ]);
             $inscriptio_etu->insert();
-            $this->render('inscription/inscrire.etudiant.html.php');
+            $this->redirectToRoute("add-inscription");
         }
     }
 

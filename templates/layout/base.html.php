@@ -1,8 +1,3 @@
-<?php
-
-use App\Core\Role;
-
-?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -20,7 +15,6 @@ use App\Core\Role;
 </head>
 
 <body>
-  <?php if (!$_SESSION == NULL) : ?>
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-secondary">
       <!-- Container wrapper -->
@@ -38,7 +32,7 @@ use App\Core\Role;
           </a>
           <!-- Left links -->
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <?php if (Role::isRP()) : ?>
+            <?php if ($Role::isRP()) : ?>
               <li class="nav-item">
                 <a class="nav-link text-light h5" href="<?= $Constantes::WEB_ROOT . 'classes' ?>">Lister classe</a>
               </li>
@@ -51,16 +45,22 @@ use App\Core\Role;
               <li class="nav-item">
                 <a class="nav-link text-light h5" href="<?= $Constantes::WEB_ROOT . 'lister-inscription' ?>">lister etudiant inscrits</a>
               </li>
+              <li class="nav-item">
+                <a class="nav-link text-light h5" href="<?= $Constantes::WEB_ROOT . 'lister-demandes' ?>">Lister Les demandes</a>
+              </li>
             <?php endif ?>
-            <?php if (Role::isAC()) : ?>
+            <?php if ($Role::isAC()) : ?>
               <li class="nav-item">
                 <a class="nav-link text-light h5" href="<?= $Constantes::WEB_ROOT . 'add-inscription' ?>">Inscrire un etudiant</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link text-light h5" href="<?= $Constantes::WEB_ROOT . 'lister-inscription' ?>">lister etudiant inscrits</a>
               </li>
+              <li class="nav-item">
+                <a class="nav-link text-light h5" href="<?= $Constantes::WEB_ROOT . 'lister-demandes' ?>">Lister Les demandes</a>
+              </li>
             <?php endif ?>
-            <?php if (Role::isEtudiant()) : ?>
+            <?php if ($Role::isEtudiant()) : ?>
               <li class="nav-item">
                 <a class="nav-link text-light h5" href="<?= $Constantes::WEB_ROOT . 'lister-own' ?>">Lister mes demandes</a>
               </li>
@@ -79,7 +79,6 @@ use App\Core\Role;
 
         </div>
     </nav>
-  <?php endif ?>
   <!-- END NAVBAR-->
   <?= $contents_for_views ?>
   <script src="<?= $Constantes::WEB_ROOT . 'bootstrap/jquery.min.js' ?>"></script>

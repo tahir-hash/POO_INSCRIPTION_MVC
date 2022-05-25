@@ -12,29 +12,39 @@ class SecurityController extends Controller
     {
         //get
         if ($this->request->isGet()) {
-
+            $this->layout="connected";
             $this->render('security/login.html.php');
         }
         if ($this->request->isPost()) {
             //validation
-            $user_connect = User::findUserByLoginAndPassword($_POST['login'], $_POST['password']);
-            if ($user_connect != NULL) {
-                $this->session->setSession('user', $user_connect);
-                $this->session->setSession('annee',"2020-2021");
-                if(Role::isRP())
+            $user_connect = User::findUserByLoginAndPassword($_POST['login']);
+            if ($user_connect != NULL) 
+            {
+                if(password_verify($_POST['password'],$user_connect->password))
                 {
-                    $this->redirectToRoute('lister-profs');
-                }
-                if(Role::isEtudiant())
+                    $this->session->setSession('user', $user_connect);
+                    $this->session->setSession('annee',"2020-2021");
+                    if(Role::isRP())
+                    {
+                        $this->redirectToRoute('lister-profs');
+                    }
+                    if(Role::isEtudiant())
+                    {
+                        $this->redirectToRoute('lister-own');
+                    }
+                    if(Role::isAC())
+                    {
+                        $this->redirectToRoute('add-inscription'); 
+                    }
+                }  
+                else
                 {
-                    $this->redirectToRoute('lister-own');
+                    dd('password invalide');
                 }
-                if(Role::isAC())
-                {
-                    $this->redirectToRoute('add-inscription'); 
-                }
-            } else {
-                dd('error');
+            } 
+            else
+            {
+                dd('identifiant invalide');
             }
         }
     }

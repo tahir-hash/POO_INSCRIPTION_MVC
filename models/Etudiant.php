@@ -66,13 +66,17 @@ class Etudiant extends User
 
   public function insert(): int
   {
+    $password= password_hash("academy",PASSWORD_DEFAULT);
     $db = self::database();
     $db->connexionBD();
     $sql = "INSERT INTO " . parent::table() . " (`nom_complet`, `role`,`sexe`,`matricule`,`login`,`password`) VALUES (?,?,?,?,?,?);";
-    $result =  $db->executeUpdate($sql, [$this->nomComplet, parent::$role, $this->sexe,$this->getMatricule(),$this->getLoginUser(),"academy"]);
+    $result =  $db->executeUpdate($sql, [$this->nomComplet, parent::$role, $this->sexe,$this->getMatricule(),$this->getLoginUser(),$password]);
     $db->closeConnexion();
     return $result;
   }
+  //select password from personne where role like 'ROLE_ETUDIANT' and id !=82 and id !=83;
+
+  
   public function inscriptions(): array
   {
     $sql = "select i.* from " . self::table() . " p,inscription i

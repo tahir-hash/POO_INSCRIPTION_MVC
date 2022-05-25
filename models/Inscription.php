@@ -124,6 +124,7 @@ class Inscription extends Model
         $sql="select d.*              
               from " . self::table() . " i,personne p,demande d
               where i.id=d.inscription_id
+              and p.id=i.etudiant_id
               and p.role='ROLE_ETUDIANT'
               and p.id=?";
         return parent::findBy($sql,[$idsess]);

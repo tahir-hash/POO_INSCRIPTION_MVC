@@ -19,4 +19,15 @@ class Request
     {
         return $_SERVER['REQUEST_METHOD'] == "POST";
     }
+
+    public function query()
+    {
+        $url=$this->getUri();
+        unset($url[0]);
+        return array_values($url);
+    }
+    public function request()
+    {
+        return $_POST;
+    }
 }

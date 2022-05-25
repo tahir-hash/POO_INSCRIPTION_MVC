@@ -28,4 +28,18 @@ class DemandeController extends Controller{
             $this->render('demande/liste.demande.etudiant.html.php');
         }
     }
+    public function allDemand(){
+        if ($this->request->isGet()) {
+            if (!Role::isAC() && !Role::isRP()) {
+                $this->redirectToRoute('login');
+            }
+            else
+            {
+                $demande=Demande::alldemandes();
+                $this->render('demande/listerAll.html.php',$data=[
+                    "demande"=>$demande
+                ]);
+            }
+        }
+    }
 }

@@ -29,6 +29,7 @@ class ProfesseurController extends Controller
             }
         }
         if ($this->request->isPost()) {
+            dd($_POST['module']);
             $profs = $this->instance(Professeur::class, [
                 'nomComplet' => $_POST['nomComplet'],
                 'sexe' => $_POST['sexe'],
@@ -58,9 +59,14 @@ class ProfesseurController extends Controller
             if (!Role::isRP()) {
                 $this->redirectToRoute('login');
             } else {
-                $profs = Professeur::findAll();
+               /*  $currentPage=(int)($_GET['page'] ?? 1);
+                $count= count(Professeur::findAll());
+                $perpage=3;
+                $pages=ceil($count / $perpage);
+                $offset=$perpage *($currentPage-1); */
+                //$profs = Professeur::findTest($offset,$perpage);
+                $profs=Professeur::findAll();
                 $modules = Module::findAll();
-                // dd(end($profs));
                 $this->render('prof/liste.prof.html.php', $data = [
                     "profs" => $profs,
                     "modules" => $modules

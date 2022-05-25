@@ -5,7 +5,7 @@
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => '8e9a924e92140e1f3a2f7199c7a89e8af9584e82',
+        'reference' => '0904fa2b0bc93edb613ffaa34cc66de47dc40e21',
         'name' => 'mbayepro/inscription_poo',
         'dev' => true,
     ),
@@ -25,7 +25,7 @@
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => '8e9a924e92140e1f3a2f7199c7a89e8af9584e82',
+            'reference' => '0904fa2b0bc93edb613ffaa34cc66de47dc40e21',
             'dev_requirement' => false,
         ),
         'nette/utils' => array(

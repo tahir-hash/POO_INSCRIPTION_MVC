@@ -12,13 +12,13 @@ class Classe extends Model
     private string $filiere;
     private string $niveau;
 
-    public function __construct(?string $libelleClasse=null,?string $filiere=null, ?string $niveau=null)
+    public function __construct(?string $libelleClasse = null, ?string $filiere = null, ?string $niveau = null)
     {
-        $this->libelleClasse= $libelleClasse;
-        $this->filiere= $filiere;
+        $this->libelleClasse = $libelleClasse;
+        $this->filiere = $filiere;
         $this->niveau = $niveau;
     }
-    
+
     //getters and setter
 
     /**
@@ -107,13 +107,13 @@ class Classe extends Model
     }
     //Fonctions navigationnelles
     //ManyToMany avec Professeur
-    public static function professeurs(int $id):array|null|object
+    public static function professeurs(int $id): array|null|object
     {
         $sql = "select p.* from " . self::table() . " c,personne p,prof_classe pc
         where  pc.prof_id=p.id
         and pc.classe_id=c.id
        and c.id=?";
-       return parent::findBy($sql, [$id]);
+        return parent::findBy($sql, [$id]);
     }
 
     public function insert(): int
@@ -121,7 +121,7 @@ class Classe extends Model
         $db = self::database();
         $db->connexionBD();
         $sql = "INSERT INTO " . self::table() . " (`libelle`,`filiere`,`niveau`,`rp_id`) VALUES (?,?,?,?);";
-        $result =  $db->executeUpdate($sql, [$this->libelleClasse, $this->filiere,$this->niveau,$_SESSION['user']->id]);
+        $result =  $db->executeUpdate($sql, [$this->libelleClasse, $this->filiere, $this->niveau, $_SESSION['user']->id]);
         $db->closeConnexion();
         return $result;
     }
@@ -142,4 +142,14 @@ class Classe extends Model
         and c.id=?";
         return parent::findBy($sql, [$this->id]);
     }
+    public function update(): int
+    {
+        $db = self::database();
+        $db->connexionBD();
+        $sql = "UPDATE"." ". self::table() ." SET `libelle` = ?, `filiere` = ?, `niveau` = ? WHERE `classe`.`id` = ?";
+        $result =  $db->executeUpdate($sql, [$this->libelleClasse, $this->filiere, $this->niveau,$_POST['id']]);
+        $db->closeConnexion();
+        return $result;
+    }
+    
 }

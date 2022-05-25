@@ -37,24 +37,10 @@ class ModuleController extends Controller
     }
     public function ajouterModule()
     {
-        if ($this->request->isGet()) {
-            if (!Role::isRP()) {
-                $this->redirectToRoute('login');
-            } else {
-                $this->render('module/create.html.php');
-            }
-        }
         if ($this->request->isPost()) {
-            /* $classe= InstanceFactory::fromProperties(Classe::class, [
-                'libelleClasse'                => $_POST['libelleClasse'],
-                'filiere'                 => $_POST['filiere'],
-                'niveau' => $_POST['niveau']
-            ]); */
             $module = $this->instance(Module::class, $_POST);
             $module->insert();
-            $this->render('module/create.html.php');
-
-            //dd($classe);
+            $this->redirectToRoute('lister-module');
         }
     }
 

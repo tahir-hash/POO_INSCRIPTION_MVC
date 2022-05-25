@@ -15,5 +15,3 @@ use App\Controller\ProfesseurController;
   require_once("../core/Fonctions.php");
 
   require_once("../routes/Route.web.php");
-
- //dd(Professeur::modules(24));

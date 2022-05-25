@@ -4,13 +4,13 @@
     <a class="badge" href="<?= $Constantes::WEB_ROOT . "add-prof" ?>">AJOUTER PROFESSEUR</a>
   </button>
   <form action="<?= $Constantes::WEB_ROOT . "lister-profs" ?>" method="POST" id="form">
-  <select class="form-select w-50" aria-label="Default select example" id="selection" name="module">
-    <option value="" selected disabled>Filtrer par Module</option>
-    <?php foreach ($modules as $module) : ?>
-      <option value="<?= $module->id ?>"><?= $module->libelle ?></option>
-    <?php endforeach ?>
-  </select>
-  <input class=" col-1  btn btn-primary btn-lg" type="submit" value="Search" id="submit_prof" />
+    <select class="form-select w-50" aria-label="Default select example" id="selection" name="module">
+      <option value="" selected disabled>Filtrer par Module</option>
+      <?php foreach ($modules as $module) : ?>
+        <option value="<?= $module->id ?>"><?= $module->libelle ?></option>
+      <?php endforeach ?>
+    </select>
+    <input class=" col-1  btn btn-primary btn-lg" type="submit" value="Search" id="submit_prof" />
 
   </form>
   <table class="table table-striped" id="test">
@@ -39,4 +39,5 @@
       <?php endforeach ?>
     </tbody>
   </table>
+  
 </div>

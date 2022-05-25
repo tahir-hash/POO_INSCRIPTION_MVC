@@ -2,7 +2,6 @@
 
 namespace App\Model;
 
-
 abstract class User extends Personne
 {
 
@@ -47,8 +46,8 @@ abstract class User extends Personne
 
         return $this;
     }
-    public static function findUserByLoginAndPassword(string $login, string $password): object|null
+    public static function findUserByLoginAndPassword(string $login): object|null
     {
-        return parent::findBy("select * from personne where login=? and password=? ", [$login, $password], true);
+            return parent::findBy("select * from personne where login=?", [$login], true);
     }
 }
