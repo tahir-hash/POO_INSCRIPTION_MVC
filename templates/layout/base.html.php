@@ -9,7 +9,11 @@
   <link rel="stylesheet" href="<?= $Constantes::WEB_ROOT . 'css/login.style.css' ?>">
   <link rel="stylesheet" href="<?= $Constantes::WEB_ROOT . 'bootstrap/bootstrap.min.css' ?>">
   <link rel="stylesheet" href="<?= $Constantes::WEB_ROOT . 'css/bootstrap-select.min.css' ?>">
-
+<!-- link other -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <title>Document</title>
   
 </head>
@@ -85,6 +89,7 @@
   <script src="<?= $Constantes::WEB_ROOT . 'bootstrap/bootstrap.bundle.min.js' ?>"></script>
   <script src="<?= $Constantes::WEB_ROOT . 'js/script.js' ?>"></script>
   <script src="<?= $Constantes::WEB_ROOT . 'bootstrap/bootstrap-select.min.js' ?>"></script>
+  <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 
 </html>

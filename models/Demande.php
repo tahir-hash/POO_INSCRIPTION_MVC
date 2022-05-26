@@ -85,7 +85,7 @@ class Demande extends Model
               where i.id=d.inscription_id
               and   i.etudiant_id=p.id
               and p.role='ROLE_ETUDIANT'
-              and d.etat_demande like 'en cours'";
+              and d.etat_demande like 'en cours' order by d.id desc";
         return parent::findBy($sql);
     }
     public function rp():RP

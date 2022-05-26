@@ -59,17 +59,22 @@ class ProfesseurController extends Controller
             if (!Role::isRP()) {
                 $this->redirectToRoute('login');
             } else {
-               /*  $currentPage=(int)($_GET['page'] ?? 1);
+                $currentPage=(int)($_GET['page'] ?? 1);
                 $count= count(Professeur::findAll());
-                $perpage=3;
+                $perpage=5;
                 $pages=ceil($count / $perpage);
-                $offset=$perpage *($currentPage-1); */
-                //$profs = Professeur::findTest($offset,$perpage);
-                $profs=Professeur::findAll();
+                if($currentPage>$pages || $currentPage<=0)
+                {
+                    $currentPage=1;
+                }
+                $offset=$perpage * ($currentPage-1);
+                $profs = Professeur::findTest($offset);
                 $modules = Module::findAll();
                 $this->render('prof/liste.prof.html.php', $data = [
                     "profs" => $profs,
-                    "modules" => $modules
+                    "modules" => $modules,
+                    "pages"=>$pages,
+                    "currentPage"=>$currentPage
                 ]);
             }
         }

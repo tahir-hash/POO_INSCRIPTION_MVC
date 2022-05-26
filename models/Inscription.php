@@ -116,7 +116,7 @@ class Inscription extends Model
               where i.etudiant_id=p.id
               and i.classe_id=c.id
               and i.annee_id=a.id
-              and p.role='ROLE_ETUDIANT'";
+              and p.role='ROLE_ETUDIANT' order by i.id desc";
         return parent::findBy($sql);
     }
     public static function demandes($idsess):array
@@ -126,7 +126,7 @@ class Inscription extends Model
               where i.id=d.inscription_id
               and p.id=i.etudiant_id
               and p.role='ROLE_ETUDIANT'
-              and p.id=?";
+              and p.id=? order by d.id desc";
         return parent::findBy($sql,[$idsess]);
     }
 }

@@ -39,5 +39,24 @@
       <?php endforeach ?>
     </tbody>
   </table>
-  
+  <nav aria-label="...">
+    <ul class="pagination">
+      <?php if ($currentPage > 1) : ?>
+        <li class="page-item">
+          <a class="page-link" href="http://localhost:8000/lister-profs/?page=<?= $currentPage - 1; ?>" tabindex="-1" aria-disabled="true">Previous</a>
+        </li>
+      <?php endif ?>
+      
+      <?php if ($currentPage < $pages) : ?>
+        <li class="page-item">
+          <a class="page-link" href="http://localhost:8000/lister-profs/?page=<?= $currentPage + 1; ?>">Next</a>
+        </li>
+      <?php endif ?>
+
+    </ul>
+  </nav>
 </div>
+
+<!-- <li class="page-item active" aria-current="page">
+        <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
+      </li> -->

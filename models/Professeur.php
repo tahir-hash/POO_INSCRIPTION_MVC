@@ -37,7 +37,11 @@ class Professeur extends Personne
       and p.id=?";
     return parent::findBy($sql, [$id]);
   }
-
+  public static function findTest(int $offset): array
+  {
+      $sql = "select * from personne where role like ? order by id desc LIMIT 5 OFFSET $offset";
+      return parent::findBy($sql, [get_called_class()::getRole()]);
+  }
   public static function delete($id): int
   {
 

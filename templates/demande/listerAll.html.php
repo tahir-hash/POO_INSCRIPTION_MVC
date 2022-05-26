@@ -7,6 +7,8 @@
       <tr>
         <th scope="col">#</th>
         <th scope="col">Libelle</th>
+        <th scope="col">Nom Complet</th>
+        <th scope="col">Matricule</th>
         <th scope="col">Etat demande</th>
         <th scope="col">ACTIONS</th>
       </tr>

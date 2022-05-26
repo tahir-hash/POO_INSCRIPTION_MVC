@@ -16,7 +16,7 @@
                                 </div>
                                 <div class="col-md-6 mb-4">
                                     <h4>Affecter des classes</h4>
-                                    <select name="classe[]" class="select selectpicker" multiple data-mdb-placeholder="Example placeholder" multiple>
+                                    <select name="classe[]" class="select selectpicker" multiple data-mdb-placeholder="Example placeholder" data-live-search="true" >
                                         <?php foreach ($classes as $classe) : ?>
                                             <option value="<?= $classe->id ?>"><?= $classe->libelle ?></option>
                                         <?php endforeach ?>
@@ -45,7 +45,7 @@
                                 </div>
                                 <div class="col-md-6 mb-4">
                                     <h5>Affecter des modules</h5>
-                                    <select name="module[]" class="select selectpicker" multiple data-mdb-placeholder="Example placeholder" multiple>
+                                    <select name="module[]" class="select selectpicker" multiple data-mdb-placeholder="Example placeholder" data-live-search="true">
                                         <?php foreach ($modules as $module) : ?>
                                             <option value="<?= $module->id ?>"><?= $module->libelle ?></option>
                                         <?php endforeach ?>

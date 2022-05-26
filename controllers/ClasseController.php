@@ -32,14 +32,9 @@ class ClasseController extends Controller
             if (!Role::isRP()) {
                 $this->redirectToRoute('login');
             } else {
-                $classe = [
-                    "id" => 0,
-                    "libelle" => "",
-                    "filiere" => "",
-                    "niveau" => ""
-                ];
+                $title="AJOUTER CLASSE";
                 $this->render('classe/create.html.php', $data = [
-                    'classe' => $classe
+                    'title'=>$title
                 ]);
             }
         }
@@ -59,19 +54,18 @@ class ClasseController extends Controller
             }
             else
             {
-                dd("insert");
-               /*  $classe->insert();
-                $this->redirectToRoute('add-classe'); */
+                //dd("insert");
+                $classe->insert();
+                $this->redirectToRoute('add-classe');
             }
             
         }
     }
     public function deleteClasse()
     {
-        if ($this->request->isGet()) {
-
-            $id = explode('=', $this->request->query()[0]);
-            $id = intval($id[1]);
+        if ($this->request->isPost()) {
+            $id=$this->request->request()['id_delete'];
+          //  dd($id);
             Classe::delete($id);
             $this->redirectToRoute('classes');
         }
@@ -83,8 +77,10 @@ class ClasseController extends Controller
             $id = intval($id[1]);
             $test = Classe::findById($id);
             $classe = json_decode(json_encode($test), true);
+            $title="MODIFIER CLASSE";
             $this->render('classe/create.html.php', $data = [
-                'classe' => $classe
+                'classe' => $classe,
+                'title'=>$title
             ]);
         }
         if ($this->request->isPost()) {

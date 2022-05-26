@@ -59,12 +59,8 @@ abstract class Personne extends Model
     }
     public static function findAll(): array
     {
-        $sql = "select * from " . self::table() . " where role  like ?";
+        $sql = "select * from " . self::table() . " where role  like ? order by id desc";
         return parent::findBy($sql, [get_called_class()::getRole()]);
     }
-    public static function findTest(int $offset, int $perpage): array
-    {
-        $sql = "select * from personne where role like ? order by id limit ? offset ?;        ";
-        return parent::findBy($sql, [get_called_class()::getRole(),$perpage,$offset]);
-    }
+    
 }

@@ -1,3 +1,8 @@
+<style>
+  .modal.test {
+    display: block;
+  }
+</style>
 <div class="container mt-5">
   <h1 class="card-title">LISTE DES CLASSES DE L'ECOLE</h1>
   <button type="submit" class="btn btn-primary m-3">
@@ -21,15 +26,16 @@
           <td><?= ucwords($value->filiere)  ?></td>
           <td><?= ucwords($value->niveau) ?></td>
           <td>
-            <button type="submit" class="btn btn-warning m-3">
-              <a href="<?= $Constantes::WEB_ROOT . "update-classe/id=$value->id" ?>" class="badge"> MODIFIER</a>
-            </button>
-            <button type="submit" class="btn btn-danger m-3">
-              <a href="<?= $Constantes::WEB_ROOT . "delete-classe/id=$value->id" ?>" class="badge"> SUPPRIMER</a>
-            </button>
-            <button type="submit" class="btn btn-info m-3">
-              <a class="badge"> INFO</a>
-            </button>
+            <a href="<?= $Constantes::WEB_ROOT . "update-classe/id=$value->id" ?>" class="badge">
+              <button type="submit" class="btn btn-warning m-3 test">
+                MODIFIER
+              </button>
+            </a>
+            <form action="<?= $Constantes::WEB_ROOT . "delete-classe" ?>" class="btn" method="POST">
+              <input type="hidden" name="id_delete" value="<?= $value->id ?>">
+              <input type="submit" class="btn btn-danger test" value="SUPPRIMER" onclick="return confirmation()">
+            </form>
+
           </td>
         </tr>
       <?php endforeach ?>
@@ -38,10 +44,13 @@
   </table>
 </div>
 
-<!-- 
-<form action="<?= $Constantes::WEB_ROOT . "update-classe" ?>" method="POST">
-  <input type="hidden" name="id" value="<?= $value->id ?>">
-  <button type="submit" class="btn btn-warning m-3">
-    MODIFIER
-  </button>
-</form> -->
+<script>
+function confirmation()
+{
+  return confirm('Confirmer votre suppression!!');
+}
+</script>
+<!-- <form action="<?= $Constantes::WEB_ROOT . "delete-classe" ?>" class="btn" method="POST">
+              <input type="hidden" name="id_delete" value="<?= $value->id ?>">
+              <input type="submit" class="btn btn-danger test" value="SUPPRIMER" onclick="return checkdelete()">
+            </form> -->
