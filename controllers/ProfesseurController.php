@@ -59,34 +59,31 @@ class ProfesseurController extends Controller
             if (!Role::isRP()) {
                 $this->redirectToRoute('login');
             } else {
-                $currentPage=(int)($_GET['page'] ?? 1);
-                $count= count(Professeur::findAll());
-                $perpage=5;
-                $pages=ceil($count / $perpage);
-                if($currentPage>$pages || $currentPage<=0)
-                {
-                    $currentPage=1;
-                }
-                $offset=$perpage * ($currentPage-1);
-                $profs = Professeur::findTest($offset);
+                $pagination=$this->paginate(Professeur::class,Professeur::findAll(),5,"findTest");
                 $modules = Module::findAll();
                 $this->render('prof/liste.prof.html.php', $data = [
-                    "profs" => $profs,
                     "modules" => $modules,
-                    "pages"=>$pages,
-                    "currentPage"=>$currentPage
+                    "pagination"=>$pagination
                 ]);
             }
         }
         if ($this->request->isPost()) {
-            $profs = Module::professeurs($_POST['module']);
+            /* $profs = Module::professeurs($_POST['module']);
             $modules = Module::findAll();
             // dd(end($profs));
             //dd($profs);
             $this->render('prof/liste.prof.html.php', $data = [
                 "profs" => $profs,
                 "modules" => $modules
-            ]);
+            ]); */
+            $pagination=$this->paginate(Professeur::class,Professeur::findAll(),5,"findTest");
+            $pagination['profs']=Module::professeurs($_POST['module']);
+          //  $pagination['profs'] = ;
+                $modules = Module::findAll();
+                $this->render('prof/liste.prof.html.php', $data = [
+                    "modules" => $modules,
+                    "pagination"=>$pagination
+                ]);
         }
     }
 }

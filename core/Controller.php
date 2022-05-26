@@ -37,4 +37,22 @@ class Controller{
         header("location:".Constantes::WEB_ROOT.$uri);
         exit();
     }
+    public function paginate(string $class,array $findAll,int $perpage,string $findTest):array
+    {
+        $currentPage=(int)($_GET['page'] ?? 1);
+        $count= count($findAll);
+        $pages=ceil($count / $perpage);
+        if($currentPage>$pages || $currentPage<=0)
+        {
+            $currentPage=1;
+        }
+        $offset=$perpage * ($currentPage-1);
+        $profs = $class::$findTest($offset);
+        $pagination=[
+            "profs"=>$profs,
+            "pages"=>$pages,
+            "currentPage"=>$currentPage
+        ];
+        return $pagination;
+    }
 }

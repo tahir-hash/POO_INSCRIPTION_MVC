@@ -24,7 +24,7 @@
       </tr>
     </thead>
     <tbody>
-      <?php foreach ($profs as $key => $value) : ?>
+      <?php foreach ($pagination['profs'] as $key => $value) : ?>
         <tr>
           <th scope="row"><?= $key + 1 ?></th>
           <td><?= ucwords($value->nom_complet) ?></td>
@@ -41,15 +41,20 @@
   </table>
   <nav aria-label="...">
     <ul class="pagination">
-      <?php if ($currentPage > 1) : ?>
+      <?php if ($pagination['currentPage'] > 1) : ?>
         <li class="page-item">
-          <a class="page-link" href="http://localhost:8000/lister-profs/?page=<?= $currentPage - 1; ?>" tabindex="-1" aria-disabled="true">Previous</a>
+          <a class="page-link" href="http://localhost:8000/lister-profs/?page=<?= $pagination['currentPage'] - 1; ?>" tabindex="-1" aria-disabled="true">Previous</a>
         </li>
       <?php endif ?>
-      
-      <?php if ($currentPage < $pages) : ?>
-        <li class="page-item">
-          <a class="page-link" href="http://localhost:8000/lister-profs/?page=<?= $currentPage + 1; ?>">Next</a>
+      <?php for($i=1;$i<=$pagination['pages'];$i++) :?>
+        <li class="page-item" aria-current="page">
+        <a class="page-link" href="http://localhost:8000/lister-profs/?page=<?= $i ?>"><?=$i?></a>
+      </li> 
+      <?php endfor ?>
+
+      <?php if ($pagination['currentPage'] < $pagination['pages']) : ?>
+        <li class="page-item <?= ($i == $page) ? 'active' : ''; ?>">
+          <a class="page-link" href="http://localhost:8000/lister-profs/?page=<?= $pagination['currentPage'] + 1; ?>">Next</a>
         </li>
       <?php endif ?>
 
