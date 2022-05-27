@@ -22,7 +22,7 @@ abstract class Model implements IModel
   {
     return 0;
   }
-  public  function update(): int
+  public  function update($id): int
   {
     return 0;
   }

@@ -142,12 +142,12 @@ class Classe extends Model
         and c.id=?";
         return parent::findBy($sql, [$this->id]);
     }
-    public function update(): int
+    public function update($id): int
     {
         $db = self::database();
         $db->connexionBD();
         $sql = "UPDATE"." ". self::table() ." SET `libelle` = ?, `filiere` = ?, `niveau` = ? WHERE `classe`.`id` = ?";
-        $result =  $db->executeUpdate($sql, [$this->libelleClasse, $this->filiere, $this->niveau,$_POST['id']]);
+        $result =  $db->executeUpdate($sql, [$this->libelleClasse, $this->filiere, $this->niveau,$id]);
         $db->closeConnexion();
         return $result;
     }

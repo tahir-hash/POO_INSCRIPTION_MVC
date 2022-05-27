@@ -24,7 +24,7 @@ class Controller{
         $data["Constantes"]=Constantes::class;
         $data["Role"]=Role::class;
         $data["Session"]=Session::class;
-       // $data["request"]=$this->request;
+        $data["request"]=$this->request;
         ob_start();
         extract($data);
         require_once(Constantes::ROOT()."templates/".$path);
@@ -32,7 +32,6 @@ class Controller{
         require_once(Constantes::ROOT()."templates/layout/".$this->layout.".html.php");
     }
     
-
     public function redirectToRoute($uri){
         header("location:".Constantes::WEB_ROOT.$uri);
         exit();

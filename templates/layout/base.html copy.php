@@ -69,16 +69,12 @@
           </ul>
           <!-- Left links -->
         </div>
-        <!-- Collapsible wrapper -->
-        <div class="col">
-         <h1 class="card-title text-center"> <?= $this->session->getSession("annee")?></h1>
-        </div>
+        
         <!-- Right elements -->
         <div class="d-flex align-items-center">
           <button type="submit" class="btn btn-danger m-3">
             <a class="badge" href="<?= $Constantes::WEB_ROOT . "logout" ?>"> LOG OUT</a>
           </button>
-
         </div>
     </nav>
   <!-- END NAVBAR-->

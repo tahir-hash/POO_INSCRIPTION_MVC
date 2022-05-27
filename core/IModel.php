@@ -6,7 +6,7 @@ interface IModel
 {
   //Abstraites
   //instances
-  public  function update():int;
+  public  function update($id):int;
   public function insert(): int;
   //static
   public static function delete(int $id): int;

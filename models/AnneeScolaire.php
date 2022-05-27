@@ -93,6 +93,10 @@ class AnneeScolaire extends Model
        return parent::findBy($sql, [$this->id]);
     }
 
-
+    public static function getAnnee():object
+    {
+        $sql = "select a.* from " . self::table() . " a where etat like 'en cours'";
+       return parent::findBy($sql,[],true);
+    }
  
 }

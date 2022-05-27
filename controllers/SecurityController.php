@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Core\Controller;
 use App\Core\Role;
+use App\Model\AnneeScolaire;
 use App\Model\User;
 
 class SecurityController extends Controller
@@ -23,7 +24,7 @@ class SecurityController extends Controller
                 if(password_verify($_POST['password'],$user_connect->password))
                 {
                     $this->session->setSession('user', $user_connect);
-                    $this->session->setSession('annee',"2020-2021");
+                    $this->session->setSession('annee',AnneeScolaire::getAnnee()->libelle);
                     if(Role::isRP())
                     {
                         $this->redirectToRoute('lister-profs');

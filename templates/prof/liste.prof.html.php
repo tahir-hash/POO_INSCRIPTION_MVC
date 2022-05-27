@@ -10,7 +10,7 @@
         <option value="<?= $module->id ?>"><?= $module->libelle ?></option>
       <?php endforeach ?>
     </select>
-    <input class=" col-1  btn btn-primary btn-lg" type="submit" value="Search" id="submit_prof" />
+    <input class=" col-1  btn btn-primary btn-lg mt-2" type="submit" value="Search" id="submit_prof" />
 
   </form>
   <table class="table table-striped" id="test">
