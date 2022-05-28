@@ -12,7 +12,7 @@ class Demande extends Model
     public function __construct(?string $libelleDemande=null)
     {
         $this->libelleDemande = $libelleDemande;
-        $this->etat = "En cours";
+        $this->etat = "EN COURS";
     }
     /**
      * Get the value of id
@@ -80,7 +80,7 @@ class Demande extends Model
     }
     public static function alldemandes():array
     {
-        $sql="select d.*, p.nom_complet,p.matricule              
+        $sql="select d.*,i.id as 'etud', p.nom_complet,p.matricule              
               from " . self::table() . " d,personne p,inscription i
               where i.id=d.inscription_id
               and   i.etudiant_id=p.id
@@ -96,22 +96,39 @@ class Demande extends Model
        and d.id=?";
        return parent::findBy($sql, [$this->id],true);
     }
-
-    public function inscription():Inscription
+    public static function findInscription($id):object|null
     {
-        $sql = "select p.* from " . self::table() . " d,inscription i
+        $sql = "select i.* from " . self::table() . " d,inscription i
         where  i.id=d.inscription_id
-       and d.id=?";
-       return parent::findBy($sql, [$this->id],true);
+       and i.id=?";
+       return parent::findBy($sql, [$id],true);
     }
-    public function insert(): int
+   
+    public function insertDemand($idIns): int
     {
         $db = self::database();
         $db->connexionBD();
         $sql = "INSERT INTO " . self::table() . " (`libelle`,`etat_demande`,`inscription_id`,`rp_id`) VALUES (?,?,?,?);";
-        $result =  $db->executeUpdate($sql, [$this->libelleDemande, $this->etat,1,8]);
+        $result =  $db->executeUpdate($sql, [$this->libelleDemande, $this->etat,$idIns,null]);
         $db->closeConnexion();
         return $result;
     }
-    
+    public function refusDemande($id,$rp): int
+    {
+        $db = self::database();
+        $db->connexionBD();
+        $sql = "UPDATE"." ". self::table() ." SET `etat_demande`= ?,`rp_id`=? WHERE `id` = ?";
+        $result =  $db->executeUpdate($sql, ["REFUSER",$rp,$id]);
+        $db->closeConnexion();
+        return $result;
+    }
+    public function validerDemande($id,$rp): int
+    {
+        $db = self::database();
+        $db->connexionBD();
+        $sql = "UPDATE"." ". self::table() ." SET `etat_demande`= ?,`rp_id`=? WHERE `id` = ?";
+        $result =  $db->executeUpdate($sql, ["VALIDER",$rp,$id]);
+        $db->closeConnexion();
+        return $result;
+    }
 }

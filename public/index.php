@@ -1,5 +1,5 @@
 <?php
-
+//phpinfo();
 use App\Model\test;
 use App\Model\Classe;
 use App\Model\Demande;

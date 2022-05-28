@@ -9,11 +9,13 @@ class Router
 
     private Request $request;
     private Controller $control;
+    private Session $session;
 
     public function __construct()
     {
         $this->request = new Request;
         $this->control = new Controller($this->request);
+        $this->session = new Session;
     }
 
     private array $routes = [];

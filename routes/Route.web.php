@@ -25,7 +25,8 @@ $router->route('/lister-inscription',[InscriptionController::class,"listerEtudia
 $router->route('/add-inscription',[InscriptionController::class,"inscrireEtudiant"]);
 $router->route('/lister-own',[DemandeController::class,"listOwnDemand"]);
 $router->route('/lister-demandes',[DemandeController::class,"allDemand"]);
-$router->route('/add-demande',[DemandeController::class,"addDemande"]);
+$router->route('/valider-demande',[DemandeController::class,"validDemand"]);
+$router->route('/traiter-demande',[DemandeController::class,"traiterDemand"]);
 $router->route('/lister-module',[ModuleController::class,"listerModule"]);
 $router->route('/add-module',[ModuleController::class,"ajouterModule"]);
 $router->route('/lister-prof-mod',[ModuleController::class,"listerProfModule"]);

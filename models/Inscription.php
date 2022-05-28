@@ -129,4 +129,21 @@ class Inscription extends Model
               and p.id=? order by d.id desc";
         return parent::findBy($sql,[$idsess]);
     }
+
+    public function update($id): int
+    {
+        $db = self::database();
+        $db->connexionBD();
+        $sql = "UPDATE"." ". self::table() ." SET `etat_ins` = ? WHERE `id` = ?";
+        $result =  $db->executeUpdate($sql, ["ANNULEE",$id]);
+        $db->closeConnexion();
+        return $result;
+    }
+    public static function inscription($id):object|null
+    {
+        $sql = "select  i.id from " . self::table() . " i, personne p
+        where    p.id=i.etudiant_id
+        and p.id=?";
+       return parent::findBy($sql, [$id],true);
+    }
 }

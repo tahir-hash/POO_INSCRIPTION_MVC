@@ -1,4 +1,3 @@
-
 <div class="container mt-5">
   <h1 class="card-title">La Liste des demandes</h1>
 
@@ -22,9 +21,19 @@
           <td><?= ucwords($value->matricule) ?></td>
           <td><?= ucwords($value->etat_demande) ?></td>
           <td>
-            <button type="submit" class="btn btn-primary m-3">
-              <a class="badge" href="#"> DETAILS</a>
-            </button>
+            <?php if ($Role::isRP()) :?>
+              <form action="<?= $Constantes::WEB_ROOT . "traiter-demande" ?>" class="btn" method="POST">
+                  <input type="hidden" name="validate" value="<?= $value->id ?>">
+                  <input type="hidden" name="action" value="valider">
+                  <input type="hidden" name="id_ins" value="<?= $value->etud?>">
+                  <input type="submit" class="btn btn-success test" value="VALIDER">
+              </form>
+              <form action="<?= $Constantes::WEB_ROOT . "traiter-demande" ?>" class="btn" method="POST">
+                <input type="hidden" name="refus" value="<?= $value->id ?>">
+                <input type="hidden" name="action" value="refus">
+                <input type="submit" class="btn btn-danger test" value="REFUSER">
+              </form>
+            <?php endif ?>
           </td>
         </tr>
       <?php endforeach ?>
