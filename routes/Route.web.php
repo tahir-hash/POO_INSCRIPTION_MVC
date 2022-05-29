@@ -1,6 +1,7 @@
 <?php
 
 use App\Core\Router;
+use App\Controller\HomeController;
 use App\Controller\ClasseController;
 use App\Controller\ModuleController;
 use App\Controller\DemandeController;
@@ -23,6 +24,7 @@ $router->route('/lister-profs',[ProfesseurController::class,"listerProf"]);
 $router->route('/add-prof',[ProfesseurController::class,"ajouterProf"]);
 $router->route('/lister-inscription',[InscriptionController::class,"listerEtudiant"]);
 $router->route('/add-inscription',[InscriptionController::class,"inscrireEtudiant"]);
+$router->route('/reinscription',[InscriptionController::class,"reinscriptionEtudiant"]);
 $router->route('/lister-own',[DemandeController::class,"listOwnDemand"]);
 $router->route('/lister-demandes',[DemandeController::class,"allDemand"]);
 $router->route('/valider-demande',[DemandeController::class,"validDemand"]);
@@ -30,6 +32,8 @@ $router->route('/traiter-demande',[DemandeController::class,"traiterDemand"]);
 $router->route('/lister-module',[ModuleController::class,"listerModule"]);
 $router->route('/add-module',[ModuleController::class,"ajouterModule"]);
 $router->route('/lister-prof-mod',[ModuleController::class,"listerProfModule"]);
+$router->route('/dashboard',[HomeController::class,"listerProfModule"]);
+
 
 try {
   $router->resolve();

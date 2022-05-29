@@ -84,4 +84,10 @@ class Etudiant extends User
         and p.id=?";
     return parent::findBy($sql, [$this->id]);
   }
+  public static function findByMatricule(string $matricule):object|null 
+  {
+    $sql = "select * from " . self::table() . " " . "where matricule=?";
+    return self::findBy($sql, [$matricule], true);
+  }
+
 }

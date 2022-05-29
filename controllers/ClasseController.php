@@ -87,8 +87,9 @@ class ClasseController extends Controller
     public function updateClasse()
     {
         if ($this->request->isGet()) {
-            $id = explode('=', $this->request->query()[0]);
+            $id = explode('=', self::decode($this->request->query()[0]));
             $id = intval($id[1]);
+            //dd();
             $test = Classe::findById($id);
             $classe = json_decode(json_encode($test), true);
             $title = "MODIFIER CLASSE";

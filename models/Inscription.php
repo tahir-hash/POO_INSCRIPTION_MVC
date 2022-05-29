@@ -69,7 +69,7 @@ class Inscription extends Model
         $db = self::database();
         $db->connexionBD();
         $sql = "INSERT INTO " . self::table() . " (`etudiant_id`,`classe_id`,`annee_id`,`ac_id`,`etat_ins`) VALUES (?,?,?,?,?);";
-        $result =  $db->executeUpdate($sql, [$this->etudiant_id,$this->classe,2,$_SESSION['user']->id,"en cours"]);
+        $result =  $db->executeUpdate($sql, [$this->etudiant_id,$this->classe,2,$_SESSION['user']->id,"EN COURS"]);
         $db->closeConnexion();
         return $result;
     }
@@ -111,11 +111,12 @@ class Inscription extends Model
 
     public static function findAll(): array
     {
-        $sql="select i.etat_ins,p.nom_complet,p.matricule,p.sexe,c.libelle as 'libClasse',a.libelle
+        $sql="select i.id,i.etat_ins,p.nom_complet,p.matricule,p.sexe,c.libelle as 'libClasse',a.libelle
                 from " . self::table() . " i,personne p,classe c,annee_scolaire a
               where i.etudiant_id=p.id
               and i.classe_id=c.id
               and i.annee_id=a.id
+              and i.etat_ins='en cours'
               and p.role='ROLE_ETUDIANT' order by i.id desc";
         return parent::findBy($sql);
     }
@@ -139,11 +140,28 @@ class Inscription extends Model
         $db->closeConnexion();
         return $result;
     }
+    public function updateReinscription($id): int
+    {
+        $db = self::database();
+        $db->connexionBD();
+        $sql = "UPDATE"." ". self::table() ." SET `etat_ins` = ? WHERE `id` = ?";
+        $result =  $db->executeUpdate($sql, ["TERMINEE",$id]);
+        $db->closeConnexion();
+        return $result;
+    }
     public static function inscription($id):object|null
     {
         $sql = "select  i.id from " . self::table() . " i, personne p
         where    p.id=i.etudiant_id
         and p.id=?";
        return parent::findBy($sql, [$id],true);
+    }
+    public static function findById(int $id): object|null
+    {
+        $sql = "select p.*,i.id as 'id_ins' from " . self::table() . " i, personne p
+        where    p.id=i.etudiant_id
+        and i.id=?";
+       return parent::findBy($sql, [$id],true);
+        return null;
     }
 }

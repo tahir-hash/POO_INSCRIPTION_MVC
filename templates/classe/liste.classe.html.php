@@ -1,8 +1,3 @@
-<style>
-  .modal.test {
-    display: block;
-  }
-</style>
 <div class="container mt-5">
   <h1 class="card-title">LISTE DES CLASSES DE L'ECOLE</h1>
   <button type="submit" class="btn btn-primary m-3">
@@ -26,7 +21,7 @@
           <td><?= ucwords($value->filiere)  ?></td>
           <td><?= ucwords($value->niveau) ?></td>
           <td>
-            <a href="<?= $Constantes::WEB_ROOT . "update-classe/id=$value->id" ?>" class="badge">
+            <a href="<?= $Constantes::WEB_ROOT . "update-classe/" . $Controller::encode("id=$value->id") ?>" class="badge">
               <button type="submit" class="btn btn-warning m-3 test">
                 MODIFIER
               </button>
@@ -45,10 +40,9 @@
 </div>
 
 <script>
-function confirmation()
-{
-  return confirm('Confirmer votre suppression!!');
-}
+  function confirmation() {
+    return confirm('Confirmer votre suppression!!');
+  }
 </script>
 <!-- <form action="<?= $Constantes::WEB_ROOT . "delete-classe" ?>" class="btn" method="POST">
               <input type="hidden" name="id_delete" value="<?= $value->id ?>">
